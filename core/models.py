@@ -6,8 +6,8 @@ from users.models import User
 # Create your models here.
 class Video(models.Model):
     creator = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='videos')
-    video = models.FileField.whateverThisFieldNeeds
-    thumbnail = models.ImageField(source=VideoOrWhateverTheSourceShouldBe, restofthestuff=restofthestuff)
+    # video = models.FileField.whateverThisFieldNeeds
+    # thumbnail = models.ImageField(source=VideoOrWhateverTheSourceShouldBe, restofthestuff=restofthestuff)
     # gallery = models.ForeignKey(to='Gallery', null=True, on_delete=models.CASCADE, related_name='videos')
     upvoted = models.IntegerField(default=0)
     tags = TaggableManager()
