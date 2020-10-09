@@ -18,6 +18,9 @@ django-storages = "*"
 pytest = "*"
 pytest-django = "*"
 django-restframework = "*"
+django-imagekit = "*"
+pillow = "*"
+django-taggit = "*"
 
 [requires]
 python_version = "3.8"
