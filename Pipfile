@@ -14,7 +14,7 @@ django-environ = "*"
 psycopg2 = "*"
 gunicorn = "*"
 django-registration-redux = "*"
-django-storages = "*"
+django-storages = {extras = ["azure"], version = "*"}
 pytest = "*"
 pytest-django = "*"
 django-restframework = "*"
