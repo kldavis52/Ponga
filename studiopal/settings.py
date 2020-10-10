@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "storages",
     # Project-specific
     "users",
+    "core"
 ]
 
 MIDDLEWARE = [
