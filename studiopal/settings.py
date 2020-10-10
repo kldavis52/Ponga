@@ -156,6 +156,10 @@ INTERNAL_IPS = [
     # ...
 ]
 
+LOGIN_REDIRECT_URL = "/"
+
+TAGGIT_CASE_INSENSITIVE = True
+
 DEFAULT_FILE_STORAGE = "backend.custom_azure.AzureMediaStorage"
 STATICFILES_STORAGE = "backend.custom_azure.AzureStaticStorage"
 
