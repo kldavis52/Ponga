@@ -24,8 +24,8 @@ environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / ...
 BASE_DIR = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-MEDIA_ROOT = BASE_DIR / 'media'
-MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -41,7 +41,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'registration',
+    "registration",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     # Project-specific
     "users",
     "imagekit",
-    "taggit"
+    "taggit",
 ]
 
 MIDDLEWARE = [
@@ -156,7 +156,6 @@ INTERNAL_IPS = [
     # ...
 ]
 
-<<<<<<< HEAD
 DEFAULT_FILE_STORAGE = "backend.custom_azure.AzureMediaStorage"
 STATICFILES_STORAGE = "backend.custom_azure.AzureStaticStorage"
 
@@ -167,8 +166,3 @@ AZURE_ACCOUNT_NAME = "studiopal"
 AZURE_CUSTOM_DOMAIN = f"{AZURE_ACCOUNT_NAME}.blob.core.windows.net"
 STATIC_URL = f"https://{AZURE_CUSTOM_DOMAIN}/{STATIC_LOCATION}/"
 MEDIA_URL = f"https://{AZURE_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/"
-=======
-LOGIN_REDIRECT_URL = '/'
-
-TAGGIT_CASE_INSENSITIVE = True
->>>>>>> main

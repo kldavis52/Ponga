@@ -21,6 +21,8 @@ django-restframework = "*"
 django-imagekit = "*"
 pillow = "*"
 django-taggit = "*"
+azure-mgmt-resource = "*"
+azure-mgmt-media = "==1.1.1"
 
 [requires]
 python_version = "3.8"
