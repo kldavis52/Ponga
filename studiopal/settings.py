@@ -36,7 +36,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -92,7 +92,7 @@ WSGI_APPLICATION = "studiopal.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {"default": env.db()}
+# DATABASES = {"default": env.db()}
 
 DATABASES = {
     "default": {
@@ -102,6 +102,7 @@ DATABASES = {
         "PASSWORD": env("DATABASE_PASSWORD"),
         "HOST": env("DATABASE_HOST"),
         "PORT": env("DATABASE_PORT"),
+        "SSLMODE": env("SSLMODE"),
     }
 }
 
