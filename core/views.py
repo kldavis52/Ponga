@@ -5,7 +5,12 @@ from .models import User, Video, Comment
 
 # Create your views here.
 
+
 def landing_page(request):
     if request.user.is_authenticated:
         return render (request, 'landing_page.html')
     return render (request, 'landing_page.html')
+
+
+def homepage(request):
+    return render(request, "studiopal/homepage.html")
