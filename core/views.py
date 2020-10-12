@@ -8,8 +8,8 @@ from .models import User, Video, Comment
 
 def landing_page(request):
     if request.user.is_authenticated:
-        return render (request, 'landing_page.html')
-    return render (request, 'landing_page.html')
+        return render(request, "studiopal/landing_page.html")
+    return render(request, "studiopal/landing_page.html")
 
 
 def homepage(request):
