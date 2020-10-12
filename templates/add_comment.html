@@ -1,0 +1,25 @@
+<!-- {% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+
+<p>Video name:</p>{{video.title }} #we might need a title field on class Video model
+<p>Picture description:<p>{{image.description }}
+<img src='{{image.image.url}}'/>
+
+<p> {{ user.username }}, you can add your comment </p><br>
+
+
+
+<form action="{% url 'add_comment' video_pk=video.pk %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">add comment</button>
+
+    </form>
+
+
+{% endblock %} -->

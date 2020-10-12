@@ -19,9 +19,9 @@ from django.urls import include, path
 from core import views
 
 urlpatterns = [
-
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
+    # path('core/add_comment/<int:video_pk>/', views.add_comment, name='add_comment'),
     path('landing_page/', views.landing_page, name='landing_page')
     path("", views.homepage, name="homepage"),
 ]
