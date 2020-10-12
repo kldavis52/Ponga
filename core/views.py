@@ -1,13 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from django.http import HttpResponse
-# from .models import Video, Comment
 # from .forms import  VideoForm, CommentsForm
+from .models import User, Video, Comment
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
 
-# Create your views here.
+def landing_page(request):
+    if request.user.is_authenticated:
+        return render (request, 'landing_page.html')
+    return render (request, 'landing_page.html')
+
+
+def homepage(request):
+    return render(request, "studiopal/homepage.html")
+
 # def add_comment(request, image_pk):
 # video = get_object_or_404(Video, pk = video_pk)
 #     if request.method == 'GET':
@@ -21,4 +26,3 @@ def index(request):
 #             comments.save()
 #             return redirect (to='videos', video_pk=video.video.pk)
 #     return render (request, "video/add_comment.html", {'form':form, 'video':video})
-
