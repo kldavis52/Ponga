@@ -53,10 +53,11 @@ INSTALLED_APPS = [
     "django_extensions",
     "storages",
     # Project-specific
-    "core",
+    'core',
     "users",
     "imagekit",
     "taggit",
+    "core",
 ]
 
 MIDDLEWARE = [
@@ -141,9 +142,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = "/static/"
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / 'static',
 ]
 
 # Custom user model
