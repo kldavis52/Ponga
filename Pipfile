@@ -14,13 +14,15 @@ django-environ = "*"
 psycopg2 = "*"
 gunicorn = "*"
 django-registration-redux = "*"
-django-storages = "*"
+django-storages = {extras = ["azure"], version = "*"}
 pytest = "*"
 pytest-django = "*"
 django-restframework = "*"
 django-imagekit = "*"
 pillow = "*"
 django-taggit = "*"
+azure-mgmt-resource = "*"
+azure-mgmt-media = "==1.1.1"
 
 [requires]
 python_version = "3.8"
