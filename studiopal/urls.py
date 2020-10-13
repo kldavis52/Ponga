@@ -25,7 +25,7 @@ urlpatterns = [
     # path('core/add_comment/<int:video_pk>/', views.add_comment, name='add_comment'),
     path("studiopal/landing_page/", views.landing_page, name="landing_page"),
     path("studiopal/add_instructor/", views.add_instructor, name="add_instructor"),
-    path("studiopal/upload_video", views.upload_video, name="upload_video"),
+    path("studiopal/video_upload/", views.video_upload, name="video_upload"),
     path("", views.homepage, name="homepage"),
 ]
 

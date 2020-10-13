@@ -6,15 +6,16 @@ from .models import User, Video, Comment
 from .forms import InstructorForm, VideoForm
 
 
-def upload_video(request):
+def video_upload(request):
     if request.method == "POST":
         form = VideoForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect("upload_video")
-        else:
-            form = VideoForm()
-    return render(request, "studiopal/homepage.html", {"form": form})
+            video = form.save(commit=False)
+            video.creator = request.user
+            video.save()
+            return redirect("video_upload")
+    form = VideoForm()
+    return render(request, "studiopal/video_upload.html", {"form": form})
 
 
 def landing_page(request):
