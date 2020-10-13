@@ -1,29 +1,39 @@
 from django import forms
-from .models import Video, Comment
+from .models import Video, Comment, User
 
 
 
-class VideoForm(forms.ModelForm):
+# class VideoForm(forms.ModelForm):
+#     class Meta:
+#         model = Video
+#         fields = [
+#             #"user",
+#             "creator",
+#             "upvoted",
+#             "image",
+#             #"thumbnail",
+            
+            
+            
+#         ]
+
+
+
+# class CommentsForm(forms.ModelForm):
+#     class Meta:
+#         model = Comment
+#         fields = [
+#             'text'
+#             'author'
+#             'pu_date'
+#         ]
+
+class InstructorForm(forms.ModelForm):
     class Meta:
-        model = Video
+        model = User
         fields = [
-            #"user",
-            "creator",
-            "upvoted",
-            "image",
-            #"thumbnail",
-            
-            
-            
-        ]
-
-
-
-class CommentsForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-        fields = [
-            'text'
-            'author'
-            'pu_date'
+            'name',
+            # 'profile_photo',
+            # 'image_medium',
+            'bio',
         ]

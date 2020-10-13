@@ -2,13 +2,26 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 # from .forms import  VideoForm, CommentsForm
 from .models import User, Video, Comment
+from .forms import InstructorForm
 
 
 def landing_page(request):
     if request.user.is_authenticated:
-        return render (request, 'landing_page.html')
-    return render (request, 'landing_page.html')
+        return render(request, 'studiopal/landing_page.html')
+    return render (request, 'studiopal/landing_page.html')
 
+def add_instructor(request):
+    if request.method == "POST":
+        form = InstructorForm(request.POST)
+        if form.is_valid():
+            return redirect(to='homepage')
+    form = InstructorForm()
+    return render(request, 'studiopal/add_instructor.html', {'form':form})
+    
+# def view_instructor(request, user_pk)
+       
+            
+    
 
 def homepage(request):
     return render(request, "studiopal/homepage.html")

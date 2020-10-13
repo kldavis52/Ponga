@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+Hi {{ user.username }}
+Add instructor form here
+<form action= "{% url 'add_instructor' %}" method='POST' enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type='submit' class='button'>Add Instructor</button>
+</form>
+{% endblock %}
