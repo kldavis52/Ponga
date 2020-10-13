@@ -3,7 +3,18 @@ from django.views import View
 
 # from .forms import  VideoForm, CommentsForm
 from .models import User, Video, Comment
-from .forms import InstructorForm
+from .forms import InstructorForm, VideoForm
+
+
+def upload_video(request):
+    if request.method == "POST":
+        form = VideoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("upload_video")
+        else:
+            form = VideoForm()
+    return render(request, "studiopal/homepage.html", {"form": form})
 
 
 def landing_page(request):

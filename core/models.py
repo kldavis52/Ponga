@@ -13,7 +13,7 @@ class Video(models.Model):
     creator = models.ForeignKey(
         to=User, on_delete=models.CASCADE, related_name="videos"
     )
-    video = models.FileField(upload_to="media")
+    video = models.FileField(upload_to="media/")
     # thumbnail = models.ImageField(source=VideoOrWhateverTheSourceShouldBe, restofthestuff=restofthestuff)
     # gallery = models.ForeignKey(to='Gallery', null=True, on_delete=models.CASCADE, related_name='videos')
     upvoted = models.IntegerField(default=0)
