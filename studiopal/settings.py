@@ -103,7 +103,6 @@ DATABASES = {
         "PASSWORD": env("DATABASE_PASSWORD"),
         "HOST": env("DATABASE_HOST"),
         "PORT": env("DATABASE_PORT"),
-    
     }
 }
 
@@ -165,4 +164,3 @@ TAGGIT_CASE_INSENSITIVE = True
 
 STATIC_LOCATION = "static"
 MEDIA_LOCATION = "media"
-
