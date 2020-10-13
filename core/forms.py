@@ -2,6 +2,13 @@ from django import forms
 from .models import Video, Comment, User
 
 
+class VideoForm(forms.ModelForm):
+    class Meta:
+        model = Video
+        fields = [
+            "video",
+        ]
+
 
 # class VideoForm(forms.ModelForm):
 #     class Meta:
@@ -12,11 +19,9 @@ from .models import Video, Comment, User
 #             "upvoted",
 #             "image",
 #             #"thumbnail",
-            
-            
-            
-#         ]
 
+
+#         ]
 
 
 # class CommentsForm(forms.ModelForm):
@@ -28,12 +33,13 @@ from .models import Video, Comment, User
 #             'pu_date'
 #         ]
 
+
 class InstructorForm(forms.ModelForm):
     class Meta:
         model = User
         fields = [
-            'name',
+            "name",
             # 'profile_photo',
             # 'image_medium',
-            'bio',
+            "bio",
         ]
