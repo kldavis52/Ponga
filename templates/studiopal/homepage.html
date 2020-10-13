@@ -1,18 +1,13 @@
-{% extends "base.html" %} 
-
-{% block content %}
-{% if user.is_authenticated is False %}
-    <p>
-        <a href="{% url 'auth_login' %}">login</a>
-    </p>
-    or 
-    <a href="{% url 'registration_register' %}">createaccount</a>
+{% extends "base.html" %} {% block content %} {% if user.is_authenticated is
+False %}
+<p>
+  <a href="{% url 'auth_login' %}">login</a>
+</p>
+or
+<a href="{% url 'registration_register' %}">createaccount</a>
 {% else %}
-<p>Welcome {{ user.username }} </p>
-<a href="{% url 'landing_page' %}">
-<p>Watch some videos</p></a>
+<p>Welcome {{ user.username }}</p>
+<a href="{% url 'landing_page' %}"> <p>Watch some videos</p></a>
 <a href="{% url 'add_instructor' %}"><p>sign up to create content</p></a>
-{% endif %}
-{% endblock %}
-
-
+<a href="{% url 'video_upload' %}"><p>Upload Video</p></a>
+{% endif %} {% endblock %}
