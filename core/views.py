@@ -20,13 +20,13 @@ def video_upload(request):
 
 
 def video_detail(request, video_pk):
-    video = get_object_or_404(Video, video_pk)
+    video = Video.objects.get(id=video_pk)
+    return render(request, "studiopal/video_detail.html", {"video": video})
 
 
 def landing_page(request):
-    if request.user.is_authenticated:
-        return render(request, "studiopal/landing_page.html")
-    return render(request, "studiopal/homepage.html")
+    videos = Video.objects.all()
+    return render(request, "studiopal/landing_page.html", {"videos": videos})
 
 
 def add_instructor(request):
