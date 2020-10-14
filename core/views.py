@@ -24,13 +24,17 @@ def landing_page(request):
     return render(request, "studiopal/landing_page.html")
 
 
-def add_instructor(request):
-    if request.method == "POST":
-        form = InstructorForm(request.POST)
-        if form.is_valid():
-            return redirect(to="homepage")
-    form = InstructorForm()
-    return render(request, "studiopal/add_instructor.html", {"form": form})
+# def add_instructor_info(request):
+#     if request.method == "POST":
+#         form = InstructorForm(data=request.POST)
+#         if form.is_valid():
+#             user = form.save(commit=False)
+#             user.bio = request.user
+#             form.save()
+#             return redirect(to="homepage")
+#     else:
+#         form = InstructorForm()
+#     return render(request, "studiopal/add_instructor_info.html", {"form": form})
 
 
 # def view_instructor(request, user_pk)
@@ -53,3 +57,18 @@ def homepage(request):
 #             comments.save()
 #             return redirect (to='videos', video_pk=video.video.pk)
 #     return render (request, "video/add_comment.html", {'form':form, 'video':video})
+
+def add_instructor_info(request, user_pk):
+    user = get_object_or_404(User.objects.all(), pk=user_pk)
+    if request.method == 'POST':
+        form = InstructorForm(data=request.POST, instance=user)
+        if form.is_valid():
+            user = form.save()
+            return redirect(to='instructor_detail', user_pk=user.pk)
+    else:
+        form = InstructorForm(instance=user)
+    return render(request, 'studiopal/add_instructor_info.html', {'form': form, 'user': user})
+
+def instructor_detail(request, user_pk):
+    user = get_object_or_404(User.objects.all(), pk=user_pk)
+    return render(request, 'studiopal/instructor_detail.html', {'user': user})
