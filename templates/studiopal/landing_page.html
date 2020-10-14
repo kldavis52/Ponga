@@ -57,7 +57,7 @@
     <h2 class="video-section-title">Workout videos</h2>
     <button class="video-section-title-close">&times;</button>
     <article class="video-container">
-      <a href="#" class="thumbnail">
+      <a href="{% url 'video_detail' video_pk=video_pk %}" class="thumbnail">
         <img
           class="thumbnail-image"
           src="http://unsplash.it/250/150?gravity=center"

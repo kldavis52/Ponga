@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
+from django.contrib.auth.decorators import login_required
 
 # from .forms import  VideoForm, CommentsForm
 from .models import User, Video, Comment
@@ -18,10 +19,14 @@ def video_upload(request):
     return render(request, "studiopal/video_upload.html", {"form": form})
 
 
+def video_detail(request, video_pk):
+    video = get_object_or_404(Video, video_pk)
+
+
 def landing_page(request):
     if request.user.is_authenticated:
         return render(request, "studiopal/landing_page.html")
-    return render(request, "studiopal/landing_page.html")
+    return render(request, "studiopal/homepage.html")
 
 
 def add_instructor(request):
