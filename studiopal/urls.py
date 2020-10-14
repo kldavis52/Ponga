@@ -26,6 +26,11 @@ urlpatterns = [
     path("studiopal/landing_page/", views.landing_page, name="landing_page"),
     path("studiopal/add_instructor/", views.add_instructor, name="add_instructor"),
     path("studiopal/video_upload/", views.video_upload, name="video_upload"),
+    path(
+        "studiopal/video_detail/<int:video_pk>/",
+        views.video_detail,
+        name="video_detail",
+    ),
     path("", views.homepage, name="homepage"),
 ]
 

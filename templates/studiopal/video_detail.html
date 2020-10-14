@@ -1,0 +1,7 @@
+{% extends 'base.html' %} {% block content %}
+
+<video width="530" height="440" controls autoplay>
+  <source src="{{ MEDIA_URL }}/{{ video.video.url }}" type="video/mp4" />
+</video>
+
+{% endblock %}
