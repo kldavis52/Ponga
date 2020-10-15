@@ -32,7 +32,7 @@ urlpatterns = [
         views.video_detail,
         name="video_detail",
     ),
-    path("", views.homepage, name="homepage"),
+    path("", views.landing_page, name="landing_page"),
 ]
 
 if settings.DEBUG:
