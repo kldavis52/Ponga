@@ -24,7 +24,8 @@ urlpatterns = [
     path("accounts/", include("registration.backends.simple.urls")),
     path("studiopal/add_comment/<int:video_pk>/", views.add_comment, name='add_comment'),
     path("studiopal/landing_page/", views.landing_page, name="landing_page"),
-    path("studiopal/add_instructor/", views.add_instructor, name="add_instructor"),
+    path("studiopal/<int:user_pk>/add_instructor_info/", views.add_instructor_info, name="add_instructor_info"),
+    path('studiopal/<int:user_pk>/', views.instructor_detail, name="instructor_detail"),
     path("studiopal/video_upload/", views.video_upload, name="video_upload"),
     path(
         "studiopal/video_detail/<int:video_pk>/",

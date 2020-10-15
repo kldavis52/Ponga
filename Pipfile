@@ -23,6 +23,7 @@ pillow = "*"
 django-taggit = "*"
 azure-mgmt-resource = "*"
 azure-mgmt-media = "==1.1.1"
+ipython = "*"
 
 [requires]
 python_version = "3.8"
