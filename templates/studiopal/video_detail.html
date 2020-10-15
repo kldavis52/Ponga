@@ -1,7 +1,20 @@
 {% extends 'base.html' %} {% block content %}
 
-<video width="530" height="440" controls autoplay>
+<video width="530" height="440" controls>
   <source src="{{ video.video.url }}" type="video/mp4" />
+  <source src="{{ video.video.url }}" type="video/x-flv" />
+  <source src="{{ video.video.url }}" type="video/MP2T" />
+  <source src="{{ video.video.url }}" type="video/3gpp" />
+  <source src="{{ video.video.url }}" type="video/3gpp2" />
+  <source src="{{ video.video.url }}" type="video/3gpp-tt" />
+  <source src="{{ video.video.url }}" type="video/quicktime" />
+  <source src="{{ video.video.url }}" type="video/x-msvideo" />
+  <source src="{{ video.video.url }}" type="video/x-ms-wmv" />
+  <source src="{{ video.video.url }}" type="video/webm" />
+  <source src="{{ video.video.url }}" type="video/ogg" />
+  <source src="{{ video.video.url }}" type="video/H264" />
+  <source src="{{ video.video.url }}" type="video/H264-RCDO" />
+  <source src="{{ video.video.url }}" type="video/H264-SVC" />
 </video>
 
 {% endblock %}
