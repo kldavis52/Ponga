@@ -1,43 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 
-<header class="header">
-  <a href="#">
-    <img
-      src="http://unsplash.it/300/200?gravity=center"
-      class="studiopal-logo"
-    />
-  </a>
-  StudioPal!
-  <form class="search-bar">
-    <input
-      class="search-input"
-      type="search"
-      placeholder="Search"
-      aria-label="Search"
-    />
-    <button type="submit" class="search-btn">
-      <img src="http://unsplash.it/75/50?gravity=center" />
-    </button>
-  </form>
-  <div class="menu-icons">
-    <a href="#">
-      <img src="http://unsplash.it/75/50?gravity=center" alt="this link" />
-    </a>
-    {% if not user.is_authenticated %}
-<p>
-  <a href="{% url 'auth_login' %}">login</a>
-</p>
-or
-<a href="{% url 'registration_register' %}">createaccount</a>
-{% else %}
-<p>Welcome {{ user.username }}</p>
-    <a href="{% url 'add_instructor_info' user_pk=user.pk %}">
-      <p>sign up to create content</p>
-    </a>
-    <a href = "{% url 'auth_logout' %}"><i class="fas fa-sign-out-alt"></i>&nbsp;logout</a>
-{% endif %}
-  </div>
-</header>
+
 <div class="categories">
   <section class="category-selection">
     <button class="category">All</button>

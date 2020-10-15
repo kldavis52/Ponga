@@ -6,8 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static '/css/styles.css/' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <title>{% block title %}StudioPal{% endblock %}</title>
+    <header class="header">
+      <a href="#">
+        <img
+          src="http://unsplash.it/300/200?gravity=center"
+          class="studiopal-logo"
+        />
+      </a>
+      StudioPal!
+      <form class="search-bar">
+        <input
+          class="search-input"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button type="submit" class="search-btn">
+          <img src="http://unsplash.it/75/50?gravity=center" />
+        </button>
+      </form>
+      <div class="menu-icons">
+        <a href="#">
+          <img src="http://unsplash.it/75/50?gravity=center" alt="this link" />
+        </a>
+        {% if not user.is_authenticated %}
+    <p>
+      <a href="{% url 'auth_login' %}">login</a>
+    </p>
+    or
+    <a href="{% url 'registration_register' %}">createaccount</a>
+    {% else %}
+    <p>Welcome {{ user.username }}</p>
+        <a href="{% url 'add_instructor_info' user_pk=user.pk %}">
+          <p>Become a content creator</p>
+        </a>
+        <a href = "{% url 'auth_logout' %}"><i class="fas fa-sign-out-alt"></i>&nbsp;logout</a>
+    {% endif %}
+      </div>
+    </header>
   </head>
   <body>
     {% block content %} {% endblock %}
