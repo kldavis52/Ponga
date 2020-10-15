@@ -21,7 +21,7 @@ def video_upload(request):
 
 def video_detail(request, video_pk):
     video = Video.objects.get(id=video_pk)
-    return render(request, "studiopal/video_detail.html", {"video":video,"video_pk":video.pk})
+    return render(request, "studiopal/video_detail.html", {"video":video})
 
 
 def landing_page(request):
