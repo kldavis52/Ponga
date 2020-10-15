@@ -10,28 +10,14 @@ class VideoForm(forms.ModelForm):
         ]
 
 
-# class VideoForm(forms.ModelForm):
-#     class Meta:
-#         model = Video
-#         fields = [
-#             #"user",
-#             "creator",
-#             "upvoted",
-#             "image",
-#             #"thumbnail",
 
+class CommentsForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = [
+            'text'
 
-#         ]
-
-
-# class CommentsForm(forms.ModelForm):
-#     class Meta:
-#         model = Comment
-#         fields = [
-#             'text'
-#             'author'
-#             'pu_date'
-#         ]
+        ]
 
 
 class InstructorForm(forms.ModelForm):

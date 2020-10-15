@@ -22,7 +22,7 @@ from core import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("registration.backends.simple.urls")),
-    # path('core/add_comment/<int:video_pk>/', views.add_comment, name='add_comment'),
+    path("studiopal/add_comment/<int:video_pk>/", views.add_comment, name='add_comment'),
     path("studiopal/landing_page/", views.landing_page, name="landing_page"),
     path("studiopal/add_instructor/", views.add_instructor, name="add_instructor"),
     path("studiopal/video_upload/", views.video_upload, name="video_upload"),

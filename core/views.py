@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 # from .forms import  VideoForm, CommentsForm
 from .models import User, Video, Comment
-from .forms import InstructorForm, VideoForm
+from .forms import InstructorForm, VideoForm, CommentsForm
 
 
 def video_upload(request):
@@ -21,7 +21,7 @@ def video_upload(request):
 
 def video_detail(request, video_pk):
     video = Video.objects.get(id=video_pk)
-    return render(request, "studiopal/video_detail.html", {"video": video})
+    return render(request, "studiopal/video_detail.html", {"video":video,"video_pk":video_pk})
 
 
 def landing_page(request):
@@ -45,16 +45,16 @@ def homepage(request):
     return render(request, "studiopal/homepage.html")
 
 
-# def add_comment(request, image_pk):
-# video = get_object_or_404(Video, pk = video_pk)
-#     if request.method == 'GET':
-#         form =VideoForm()
-#     else:
-#         form=CommentsForm(data = request.POST)
-#         if form. is_valid():
-#             comments = form.save(commit=False)
-#             comments.author = request.user
-#             comments.video = video
-#             comments.save()
-#             return redirect (to='videos', video_pk=video.video.pk)
-#     return render (request, "video/add_comment.html", {'form':form, 'video':video})
+def add_comment(request, video_pk):
+    video = get_object_or_404(Video, pk = video_pk)
+    if request.method == 'POST':
+        form =VideoForm()
+        form=CommentsForm(data = request.POST)
+        if form. is_valid():
+            comments = form.save(commit=False)
+            comments.author = request.user
+            comments.video = video
+            comments.save()
+            return redirect (to='video_detail', video_pk=video_pk)
+    return render (request, "studiopal/video_detail.html", {'form':form, 'video':video})
+

@@ -1,17 +1,8 @@
-{% extends "base.html" %}
-{% load static %}
+<!-- {% extends "base.html" %}{% block content %}
 
-{% block content %}
-
-
-
-<p>Video name:</p>{{video.title }} #we might need a title field on class Video model
-<p>Picture description:<p>{{image.description }}
-<img src='{{image.image.url}}'/>
-
-<p> {{ user.username }}, you can add your comment </p><br>
-
-
+<video width="530" height="440" controls autoplay>
+    <source src="{{ MEDIA_URL }}/{{ video.video.url }}" type="video/mp4" />
+  </video>
 
 <form action="{% url 'add_comment' video_pk=video.pk %}" method="POST">
     {% csrf_token %}
@@ -21,5 +12,5 @@
 
     </form>
 
+{% endblock %} -->
 
-{% endblock %}
