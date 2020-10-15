@@ -1,7 +1,8 @@
 
 {% block content %}
+<img src='{{ user.image_medium.url }}'/>
 Hi, my name is {{ user.name }}.
 
 {{ user.bio }}
-<img src='{{ user.image_medium.url }}'/>
+
 {% endblock %}
