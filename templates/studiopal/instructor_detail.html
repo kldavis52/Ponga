@@ -5,4 +5,10 @@ Hi, my name is {{ user.name }}.
 
 {{ user.bio }}
 
+<a href="{% url 'video_upload' %}">
+    <p>Upload Video</p>
+  </a>
+  <a href="{% url 'landing_page' %}">
+    <p>Go back home</p>
+  </a>
 {% endblock %}
