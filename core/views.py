@@ -62,6 +62,13 @@ def add_comment(request, video_pk):
             return redirect (to='video_detail', video_pk=video_pk)
     return render (request, "studiopal/video_detail.html", {'form':form, 'video':video})
 
+def delete_comment (request, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    if request.method == 'POST':
+        comment.delete()
+        return redirect(to = "homepage")
+    return render(request,"studiopal/delete_comment.html", {'comment': comment})
+
 
 def add_instructor_info(request, user_pk):
     user = get_object_or_404(User.objects.all(), pk=user_pk)
