@@ -18,19 +18,16 @@
 </video>
 
 <form action="{% url 'add_comment' video_pk=video.pk %}" method="POST">
-
-    {% csrf_token %}
-    {{ form.as_p }}
+  {% csrf_token %} {{ form.as_p }}
 
   <button type="submit">Add Comment</button>
-
 </form>
 
-    {% for comment in video.comments.all %}
-    <a href="{% url 'delete_comment' comment_pk=comment.pk %}"><button>Delete</button></a>
-    <p>{{ comment.text }}</p>
+{% for comment in video.comments.all reversed %}
+<p>{{ comment.text }}</p>
+<p>{{comment.author}}<span> | </span>{{comment.pub_date}}</p>
+<a href="{% url 'delete_comment' comment_pk=comment.pk %}"
+  ><button>Delete</button></a
+>
 
-    {% endfor %}
-
-
-    {% endblock %}
+{% endfor %} {% endblock %}
