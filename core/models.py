@@ -10,12 +10,13 @@ from users.models import User
 
 # Create your models here.
 class Video(models.Model):
+    title = models.CharField(max_length=511)
+    description = models.TextField(max_length=5000, blank=True)
     creator = models.ForeignKey(
         to=User, on_delete=models.CASCADE, related_name="videos"
     )
     video = models.FileField(upload_to="media/")
-    # thumbnail = models.ImageField(source=VideoOrWhateverTheSourceShouldBe, restofthestuff=restofthestuff)
-    # gallery = models.ForeignKey(to='Gallery', null=True, on_delete=models.CASCADE, related_name='videos')
+    # thumbnail
     upvoted = models.IntegerField(default=0)
     tags = TaggableManager()
 
