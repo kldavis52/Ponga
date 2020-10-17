@@ -6,25 +6,23 @@ class VideoForm(forms.ModelForm):
     class Meta:
         model = Video
         fields = [
+            "title",
             "video",
+            "description",
         ]
-
 
 
 class CommentsForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = [
-            'text'
-
-        ]
+        fields = ["text"]
 
 
 class InstructorForm(forms.ModelForm):
     class Meta:
         model = User
         fields = [
-            'name',
-            'profile_photo',
+            "name",
+            "profile_photo",
             "bio",
         ]
