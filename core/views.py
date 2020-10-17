@@ -28,11 +28,6 @@ def landing_page(request):
     videos = Video.objects.all()
     return render(request, "studiopal/landing_page.html", {"videos": videos})
 
-
-def homepage(request):
-    return render(request, "studiopal/homepage.html")
-
-
 def add_comment(request, video_pk):
     video = get_object_or_404(Video, pk=video_pk)
     if request.method == "POST":
