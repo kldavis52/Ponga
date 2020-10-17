@@ -28,23 +28,6 @@ def landing_page(request):
     videos = Video.objects.all()
     return render(request, "studiopal/landing_page.html", {"videos": videos})
 
-
-# def add_instructor_info(request):
-#     if request.method == "POST":
-#         form = InstructorForm(data=request.POST)
-#         if form.is_valid():
-#             user = form.save(commit=False)
-#             user.bio = request.user
-#             form.save()
-#             return redirect(to="homepage")
-#     else:
-#         form = InstructorForm()
-#     return render(request, "studiopal/add_instructor_info.html", {"form": form})
-
-
-# def view_instructor(request, user_pk)
-
-
 def homepage(request):
     return render(request, "studiopal/homepage.html")
 
