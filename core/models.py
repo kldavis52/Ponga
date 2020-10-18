@@ -5,7 +5,8 @@ from django.db import models
 
 from imagekit.models import ImageSpecField
 from taggit.managers import TaggableManager
-
+from django.contrib.contenttypes.fields import GenericRelation
+from comment.models import Comment
 from users.models import User
 
 # Create your models here.
@@ -18,6 +19,7 @@ class Video(models.Model):
     # gallery = models.ForeignKey(to='Gallery', null=True, on_delete=models.CASCADE, related_name='videos')
     upvoted = models.IntegerField(default=0)
     tags = TaggableManager()
+    comments = GenericRelation(Comment)
 
     def __str__(self):
         return self.title

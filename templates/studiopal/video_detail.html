@@ -1,5 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 
+{% load comment_tags %}
+{% include_bootstrap %}
+{% include_static %}
+
 <video width="530" height="440" controls>
   <source src="{{ video.video.url }}" type="video/mp4" />
   <source src="{{ video.video.url }}" type="video/x-flv" />
@@ -29,5 +33,7 @@
 <a href="{% url 'delete_comment' comment_pk=comment.pk %}"
   ><button>Delete</button></a
 >
+<!-- {% render_comments video request %} -->
+
 
 {% endfor %} {% endblock %}

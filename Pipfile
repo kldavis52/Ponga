@@ -24,6 +24,7 @@ django-taggit = "*"
 azure-mgmt-resource = "*"
 azure-mgmt-media = "==1.1.1"
 ipython = "*"
+django-comments-dab = "*"
 
 [requires]
 python_version = "3.8"
