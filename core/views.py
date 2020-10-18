@@ -43,7 +43,7 @@ def add_comment(request, video_pk):
             comments.save()
             return redirect(to="video_detail", video_pk=video_pk)
     return render(
-        request, "studiopal/video_detail.html", {"form": form, "video": video}
+        request, "studiopal/video_detail.html", {"video": video,"form": form,}
     )
 
 

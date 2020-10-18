@@ -23,6 +23,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("registration.backends.simple.urls")),
     path("studiopal/add_comment/<int:video_pk>/", views.add_comment, name='add_comment'),
+    path('comment/', include('comment.urls')),
     path("studiopal/landing_page/", views.landing_page, name="landing_page"),
     path("studiopal/<int:user_pk>/add_instructor_info/", views.add_instructor_info, name="add_instructor_info"),
     path('studiopal/<int:user_pk>/', views.instructor_detail, name="instructor_detail"),
