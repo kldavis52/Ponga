@@ -1,90 +1,45 @@
 {% extends 'base.html' %} {% block content %}
+{% load static %}
 <div>
 <div class="container">
+<div style="display: flex; flex-direction: row; margin-top: 50px; margin-bottom: 50px">
+  <img style="width: 650px" src="{% static 'img/studio_pal_hero_bike.png'%}">
+  <div style="display: flex; flex-direction: column; margin-left: -150px">
+    <h2 style="font-family: Playfair Display; color: #6767f6;">Cupcakes fixie herald sun the indy nccu art of cool.</h2>
+    <span style="font-family: Open sans; font-weight: 400; color: #323140; font-size: 20px">Blues french press the state of things northgate park.</span>
+  </div>
+</div>
+  <h4 style="padding-left: 10px; font-family: Open Sans; font-weight: 800; color: #6767f6 ">Latest Sessions</h4>
   <section>
-    <h2>Latest Sessions</h2>
-    <article>
+    <div class="row">
       {% for video in videos %}
-      <a href="{% url 'video_detail' video_pk=video.pk %}" class="thumbnail">
-        <img
-          class="thumbnail-image"
-          src="http://unsplash.it/250/150?gravity=center"
-        />
-      </a>
-      <div>
-        <a href="{% url 'video_detail' video_pk=video.pk %}">
-          <img
-            class="channel-icon"
-            src="http://unsplash.it/36/36?gravity=center"
-          />
-        </a>
-        <div>
-          <a
-            href="{% url 'video_detail' video_pk=video.pk %}"
-            class="video-title"
-            >VideoTitle</a
-          >
-          <a href="" class="video-channel-name">Channel Name</a>
-          <div>
-            <span>upvotes</span>
-            <span>pub_date</span>
+      <div class="col m4">
+          <div class="card">
+            <div class="card-image">
+              <img src="http://unsplash.it/250/150?gravity=center">
+            </div>
+            <div class="card-content">
+              <span style="font-family: Open Sans; font-weight: 400;" class="card-title activator grey-text text-darken-4">Card Title</span>
+            </div>
           </div>
-        </div>
       </div>
       {% endfor %}
-    </article>
+  </div>
   </section>
   <section>
-    <h2>Favorite Sessions</h2>
-    <article>
-      <a href="#" class="thumbnail">
-        <img
-          src="http://unsplash.it/250/150?gravity=center"
-        />
-      </a>
-      <div>
-        <a href="#">
-          <img
-            class="channel-icon"
-            src="http://unsplash.it/36/36?gravity=center"
-          />
-        </a>
-        <div>
-          <a href="#" class="video-title">VideoTitle</a>
-          <a href="" class="video-channel-name">Channel Name</a>
-          <div class="video-meta-data">
-            <span>upvotes</span>
-            <span>pub_date</span>
+  <h4 style="padding-left: 10px; font-family: Open Sans; font-weight: 800; color: #6767f6 ">Favorite Sessions</h4>
+    <div class="row">
+      <div class="col m4">
+        <div class="card">
+          <div class="card-image">
+            <img src="http://unsplash.it/250/150?gravity=center">
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">Card Title</span>
           </div>
         </div>
       </div>
-    </article>
-  </section>
-  <section>
-    <h2>Liked Videos</h2>
-    <button>&times;</button>
-    <article class="video-container">
-      <a href="#" class="thumbnail">
-        <img
-          src="http://unsplash.it/250/150?gravity=center"
-        />
-      </a>
-      <div>
-        <a href="#">
-          <img
-            src="http://unsplash.it/36/36?gravity=center"
-          />
-        </a>
-        <div>
-          <a href="#" class="video-title">VideoTitle</a>
-          <a href="" class="video-channel-name">Channel Name</a>
-          <div class="video-meta-data">
-            <span>upvotes</span>
-            <span>pub_date</span>
-          </div>
-        </div>
-      </div>
-    </article>
+    </div>
   </section>
 </div>
 {% endblock %}

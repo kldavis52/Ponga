@@ -36,17 +36,23 @@
 						</a>
 					</li>
 				{% else %}
-					<li style="margin-right: 100px">
+					<li style="margin-right: 65px">
 						<div style="display: flex; align-items: center;">
 							<div style="height: 35px; width: 35px; background: white; margin-right: 15px; border-radius: 50%;">
 							</div>
 							Hey, {{ user.username }}!
 						</div>
 					</li>
+					<li class="row">
+						<div class="input-field" style="display: flex; align-items: center">
+							<span style="margin-right: 5px">{% fa5_icon 'search' %}</span>
+							<input style="padding: 0px; border-bottom: 1.7px solid white;" class="validate" id="search" type="search" placeholder="search" required>
+						</div>
+					<li>
 					<li>
 					<a href="{% url 'add_instructor_info' user_pk=user.pk %}">
 						<div style="display: flex; align-items: center">
-							{% fa5_icon 'chalkboard-teacher' %} &nbsp;
+							<span style="margin-right: 5px">{% fa5_icon 'chalkboard-teacher' %}</span>
 							Create studio
 						</div>
 					</a>
