@@ -1,0 +1,10 @@
+/* *, *::before, *::after {
+    box-sizing: border-box;
+    font-family: Arial;
+} */
+
+body {
+    background: red;
+    color: red;
+    font-family: 'Courier New', Courier, monospace;
+};
