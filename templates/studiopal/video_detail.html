@@ -21,19 +21,52 @@
   <source src="{{ video.video.url }}" type="video/H264-SVC" />
 </video>
 
-<form action="{% url 'add_comment' video_pk=video.pk %}" method="POST">
-  {% csrf_token %} {{ form.as_p }}
-
-  <button type="submit">Add Comment</button>
-</form>
-
-{% for comment in video.comments.all reversed %}
-<p>{{ comment.text }}</p>
-<p>{{comment.author}}<span> | </span>{{comment.pub_date}}</p>
-<a href="{% url 'delete_comment' comment_pk=comment.pk %}"
-  ><button>Delete</button></a
->
-<!-- {% render_comments video request %} -->
 
 
-{% endfor %} {% endblock %}
+
+<script>
+<div id="comments_container" class="pt4 ml5 mb4">
+        <div id="comments_div" class="comments" style="padding: 10px;">
+        <div id="comments_body" class="comments" style="padding: 10px;">
+            <div id="comments_text" class="comments" style="padding: 10px;">
+                    {{ comment.text | linebreaks }}
+                <p class="comment_author"></p>
+                    by <span class="font-weight-bold">{{comment.author}}</span>
+            </div>
+            </div> 
+<button id="comment_button"></button>
+const commentBox = document.getElementById("comment_box")
+const commentButton = document.getElementById("comment_button")
+const commentContainer = document.getElementById("comments_div")
+commentButton.add_comment("click", (e) => {
+e.preventDefault()
+const videoId = commentButton.dataset['video_id']
+let text = commentBody.value //event listener
+commentBody.value = "" //grabbing value from the form and creating a js object with it in event template.
+var p = document.createElement("div")
+let data = { "comment.text" : comment.text }
+
+if (text.length > 0) {
+        fetch(`/core/${videoId}/add_comment`, {
+            method: 'POST',
+            body: JSON.stringify({data}), //html string
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8'
+            }
+        })
+        .then(res => res.json())
+            .then(data => {
+                p.innerHTML = data.html
+                commentContainer.appendChild(p)
+            })
+        } 
+    })
+})
+
+
+</script>
+
+
+{% endblock content %}
+
+

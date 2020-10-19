@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.views import View
 from .models import User, Video, Comment
 from .forms import InstructorForm, VideoForm, CommentsForm
-
+# from random import json
 
 def video_upload(request):
     if request.method == "POST":
@@ -26,20 +26,39 @@ def landing_page(request):
     videos = Video.objects.all()
     return render(request, "studiopal/landing_page.html", {"videos": videos})
 
+# def add_comment(request, video_pk):
+#     video = get_object_or_404(Video, pk=video_pk)
+#     if request.method == "POST":
+#         form = VideoForm()
+#         form = CommentsForm(data=request.POST)
+#         if form.is_valid():
+#             comments = form.save(commit=False)
+#             comments.author = request.user
+#             comments.video = video
+#             comments.save()
+#             return redirect(to="video_detail", video_pk=video_pk)
+#     return render(
+#         request, "studiopal/video_detail.html", {"video": video,"form": form,}
+#     )
+
+# This view needs to accept a POST but does not need to handle a GET, and you don't need 
+# to use a Django form object. The job of this view is to handle the request, take the data 
+# from the POST body, and use it to create a new Comment object and save it to the database. 
+# Then, return a response with that same successfully saved data. When the response comes back 
+# You'll need to use the data to update the DOM
 def add_comment(request, video_pk):
     video = get_object_or_404(Video, pk=video_pk)
+    user = request.user
     if request.method == "POST":
-        form = VideoForm()
-        form = CommentsForm(data=request.POST)
-        if form.is_valid():
-            comments = form.save(commit=False)
-            comments.author = request.user
-            comments.video = video
-            comments.save()
-            return redirect(to="video_detail", video_pk=video_pk)
-    return render(
-        request, "studiopal/video_detail.html", {"video": video,"form": form,}
-    )
+        comment_json = json.loads(request.body)
+        comment = comment_json["text"]
+        new_comment = Comment(comment=comment, author=user, video=video)
+        new_comment.save()
+        html = f'<div class="comment_body">{comment.text}</p>'  \
+        f'<p class="comment_author">by <span class="font-weight-bold">{user.username}</span>' \
+        f'</p><hr></div>'
+    return JsonResponse({"html": html})
+
 
 
 def delete_comment(request, comment_pk):
@@ -67,3 +86,6 @@ def add_instructor_info(request, user_pk):
 def instructor_detail(request, user_pk):
     user = get_object_or_404(User.objects.all(), pk=user_pk)
     return render(request, "studiopal/instructor_detail.html", {"user": user})
+
+
+
