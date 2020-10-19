@@ -36,7 +36,7 @@ urlpatterns = [
 
     path("", views.landing_page, name="landing_page"),
 
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar
