@@ -26,11 +26,11 @@
 
 
 <div id="comments-container" class="pt4 ml5 mb4">
-    {% for comment in video.comments.all %}
+    {% for comment in video.comments.all reversed %}
         <div class="comment" style="padding: 10px;">
-            <p class="comments-text" style="padding: 10px;">
-            <p class="comments-author">{{ comment.text }}</p>
-                    by <span class="font-weight-bold">{{comment.author}}</span>
+            <p class="comment-body">{{ comment.text }}></p>
+            <p class="comment-date">{{comment.pub_date}}</p>
+            <p class="comments-author">by <span class="font-weight-bold">{{comment.author}}</span>
             </p>
         </div>
     {% endfor %}
@@ -41,12 +41,14 @@
     <textarea id="comment-form"></textarea>
     <button id="comment-button">Add Comments</button>
 </div>
+
+
 <script>
     const commentButton = document.querySelector("#comment-button")
 
     commentButton.addEventListener("click", function(){
         console.log("button clicked")
-        const crfToken = document.querySelector("input[name='csrfmiddlewaretoken']").value
+        const csrfToken = document.querySelector("input[name='csrfmiddlewaretoken']").value
         const commentInput = document.getElementById("comment-form").value
         let videoId = 1
         fetch(`/studiopal/add_comment/${videoId}/`, {

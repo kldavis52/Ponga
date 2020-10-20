@@ -53,8 +53,8 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "django_extensions",
     "storages",
-    "comment",
     # Project-specific
+    "comment",
     "core",
     "users",
     "imagekit",
