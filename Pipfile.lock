@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6e64e936c0010dee3a78ca9d9b20ef1e9c6c0d145537c6a8f604158ae7468ac2"
+            "sha256": "6c5b479dba9fc1541bc53d369692c9519b6f370e991b9a37dcc250eeb51f9d98"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -256,6 +256,14 @@
             ],
             "index": "pypi",
             "version": "==4.0.2"
+        },
+        "django-materializecss-form": {
+            "hashes": [
+                "sha256:29cb4f1cb371d0f7a2b2c10af842e03d6e8b5de5b78aadf1416f24efd854494b",
+                "sha256:648e81cc801fda172c7405966b29877d1242d9712b3d52c7b20aa3a78833a96a"
+            ],
+            "index": "pypi",
+            "version": "==1.1.17"
         },
         "django-registration-redux": {
             "hashes": [

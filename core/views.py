@@ -5,6 +5,8 @@ from .models import User, Video, Comment
 from .forms import InstructorForm, VideoForm, CommentsForm
 import json
 
+
+@login_required
 def video_upload(request):
     if request.method == "POST":
         form = VideoForm(request.POST, request.FILES)
@@ -26,8 +28,7 @@ def landing_page(request):
     videos = Video.objects.all()
     return render(request, "studiopal/landing_page.html", {"videos": videos})
 
-
-
+@login_required
 def add_comment(request, video_pk):
     video = get_object_or_404(Video, pk=video_pk)
     user = request.user
@@ -42,7 +43,7 @@ def add_comment(request, video_pk):
     return JsonResponse({"html": html})
 
 
-
+@login_required()
 def add_instructor_info(request, user_pk):
     user = get_object_or_404(User.objects.all(), pk=user_pk)
     if request.method == "POST":
@@ -56,10 +57,10 @@ def add_instructor_info(request, user_pk):
         request, "studiopal/add_instructor_info.html", {"form": form, "user": user}
     )
 
-
+@login_required
 def instructor_detail(request, user_pk):
     user = get_object_or_404(User.objects.all(), pk=user_pk)
     return render(request, "studiopal/instructor_detail.html", {"user": user})
 
-
-
+def about(request):
+    return render(request, "studiopal/about.html")

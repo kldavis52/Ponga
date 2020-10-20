@@ -33,6 +33,7 @@ urlpatterns = [
         name="video_detail",
     ),
     path("", views.landing_page, name="landing_page"),
+    path("studiopal/about/", views.about, name='about')
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
