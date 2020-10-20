@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.views import View
 from .models import User, Video, Comment
 from .forms import InstructorForm, VideoForm, CommentsForm
-# from random import json
+import json
 
 def video_upload(request):
     if request.method == "POST":
@@ -47,16 +47,17 @@ def landing_page(request):
 # Then, return a response with that same successfully saved data. When the response comes back 
 # You'll need to use the data to update the DOM
 def add_comment(request, video_pk):
+    print ("testing on console log")
     video = get_object_or_404(Video, pk=video_pk)
     user = request.user
     if request.method == "POST":
         comment_json = json.loads(request.body)
         comment = comment_json["text"]
-        new_comment = Comment(comment=comment, author=user, video=video)
+        new_comment = Comment(text=comment, author=user, video=video)
         new_comment.save()
-        html = f'<div class="comment_body">{comment.text}</p>'  \
-        f'<p class="comment_author">by <span class="font-weight-bold">{user.username}</span>' \
-        f'</p><hr></div>'
+        html = f'<p class="comment-body">{new_comment.text}</p>'  \
+        f'<p class="comment-author">by <span class="font-weight-bold">{user.username}</span>' \
+        f'</p>'
     return JsonResponse({"html": html})
 
 
