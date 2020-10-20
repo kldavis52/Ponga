@@ -28,9 +28,9 @@
 <div id="comments-container" class="pt4 ml5 mb4">
     {% for comment in video.comments.all reversed %}
         <div class="comment" style="padding: 10px;">
-            <p class="comment-body">{{ comment.text }}></p>
+            <p class="comment-text">{{ comment.text }}</p>
             <p class="comment-date">{{comment.pub_date}}</p>
-            <p class="comments-author">by <span class="font-weight-bold">{{comment.author}}</span>
+            <p class="comments-author">by <span class="font-weight-bold">{{ comment.author }}</span>
             </p>
         </div>
     {% endfor %}
@@ -43,17 +43,18 @@
 </div>
 
 
+
 <script>
     const commentButton = document.querySelector("#comment-button")
 
     commentButton.addEventListener("click", function(){
         console.log("button clicked")
         const csrfToken = document.querySelector("input[name='csrfmiddlewaretoken']").value
-        const commentInput = document.getElementById("comment-form").value
-        let videoId = 1
-        fetch(`/studiopal/add_comment/${videoId}/`, {
+        let commentInput = document.getElementById("comment-form")
+        const videoID =  {{ video.pk }}
+        fetch(`/studiopal/add_comment/${videoID}/`, {
             method: 'POST',
-            body: JSON.stringify({"text": commentInput}), 
+            body: JSON.stringify({"text": commentInput.value }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 'X-CSRFToken': csrfToken
@@ -69,7 +70,7 @@
                 newDiv.style="padding: 10px;"
                 newDiv.innerHTML = data.html
                 commentsContainer.appendChild(newDiv)
-                commentInput=''
+                commentInput.value =''
             })
         })
 

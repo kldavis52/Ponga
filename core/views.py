@@ -36,19 +36,11 @@ def add_comment(request, video_pk):
         comment = comment_json["text"]
         new_comment = Comment(text=comment, author=user, video=video)
         new_comment.save()
-        html = f'<p class="comment-body">{new_comment.text}</p>'  \
-        f'<p class="comment-author">by <span class="font-weight-bold">{user.username}</span>' 
+        html = f'<p class="comment-text">{new_comment.text}</p>' \
+        f'<p class="comment-author">by <span class="font-weight-bold">{user.username}</span>' \
         f'</p>'
     return JsonResponse({"html": html})
 
-
-
-def delete_comment(request, comment_pk):
-    comment = get_object_or_404(Comment, pk=comment_pk)
-    if request.method == "POST":
-        comment.delete()
-        return redirect(to="landing_page")
-    return render(request, "studiopal/delete_comment.html", {"comment": comment})
 
 
 def add_instructor_info(request, user_pk):
