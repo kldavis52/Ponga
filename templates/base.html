@@ -48,7 +48,8 @@
 							<span style="margin-right: 5px">{% fa5_icon 'search' %}</span>
 							<input style="padding: 0px; border-bottom: 1.7px solid white;" class="validate" id="search" type="search" placeholder="search" required>
 						</div>
-					<li>
+					</li>
+					{% if studio_name %}
 					<li>
 					<a href="{% url 'add_instructor_info' user_pk=user.pk %}">
 						<div style="display: flex; align-items: center">
@@ -57,6 +58,24 @@
 						</div>
 					</a>
 					</li>
+						{% else %}
+						<li>
+						<a href="{% url 'add_instructor_info' user_pk=user.pk %}">
+							<div class="nav-item-with-icon-container">
+								<span>{% fa5_icon 'chalkboard-teacher fa-sm' %}</span>
+								Edit studio
+							</div>
+						</a>
+						</li>
+						<li>
+						<a href="{% url 'instructor_detail' user_pk=user.pk %}">
+							<div class="nav-item-with-icon-container">
+								<span>{% fa5_icon 'chalkboard-teacher fa-sm' %}</span>
+								Upload a video
+							</div>
+						</a>
+						</li>
+					{% endif %}
 					<li><a href="{% url 'auth_logout' %}">Logout</a></li>
 				</ul>
 				{% endif %}
