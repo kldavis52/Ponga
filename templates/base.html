@@ -50,9 +50,9 @@
 							<span>{% fa5_icon 'search fa-sm' %}</span>
 							<input id="search" type="search" placeholder="search" required>
 						</div>
+					</li>
+					{% if studio_name is not null %}
 					<li>
-					<li>
-					{% if studio_name is null %}
 					<a href="{% url 'add_instructor_info' user_pk=user.pk %}">
 						<div class="nav-item-with-icon-container">
 							<span>{% fa5_icon 'chalkboard-teacher fa-sm' %}</span>

@@ -24,9 +24,7 @@
               </a>
             </div>
             <div class="card-content row">
-            {% if studio_name is not None %}
-              <img class="col s3 left" id="video-card-avatar" src="{{ user.image_medium.url }}">
-            {% endif %}
+              <img class="col s3 left" id="video-card-avatar" src="{{ 'user.image_medium.url' }}">
               <div class="col s8 right" style="padding: 0px">
                 <span class="truncate" id="video-card-title" >{{ video.title }}</span>
                 <p id="video-card-date" >Mar 16 2020</p>
