@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "storages",
     # Project-specific
-    "comment",
+    
     "core",
     "users",
     "imagekit",
