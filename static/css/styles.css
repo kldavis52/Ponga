@@ -4,7 +4,7 @@
 
 /* Global Styles */
 
-body,. html {
+body, html {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
 }
@@ -12,6 +12,12 @@ body,. html {
 nav {
     background: #6767f6;
     color: #ffffff;
+}
+
+h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    color: #6767f6;
 }
 
 /* base.html */
@@ -65,7 +71,7 @@ div.nav-item-with-icon-container > span {
 /* landing_page.html */
 section > h5 {
     padding-left: 10px; font-family: Open Sans; font-weight: 800; color: #6767f6;
-    font-size: 30px;
+    font-size: 26px;
 }
 #video-card-title {
     font-family: 'Open sans', sans-serif; 
@@ -74,7 +80,7 @@ section > h5 {
 
 #video-card-avatar {
     height: 55px;
-    width: 30%; 
+    width: 27%; 
     border-radius: 50%;
 }
 
@@ -95,22 +101,21 @@ section > h5 {
     display: flex; 
     flex-direction: row; 
     margin-top: 50px; 
-    margin-bottom: 50px
+    margin-bottom: 50px;
 }
 
 #hero-copy-container {
     display: flex; 
     flex-direction: column; 
-    margin-left: -150px
-}
-
-#hero-img {
-    width: 650px;
+    justify-content: center; 
+    margin-left: -250px;
+    line-height: 0px;
 }
 
 #cta-title {
     font-family: 'Playfair Display', serif; 
     color: #6767f6;
+    width: 500px;
 }
 
 #cta-subtitle {
@@ -122,4 +127,20 @@ section > h5 {
 
 div.card-content {
     line-height: 18px;
+}
+
+#hero-copy-container > a {
+    margin: 20px 0;
+    background: transparent;
+    border: 2px solid #6767f6;
+    color: #6767f6;
+    font-weight: 600;
+}
+
+/*  video_detail.html */
+
+video {
+    background: #424242;
+    width: 75%;
+    height: 550px;
 }

@@ -7,12 +7,12 @@
 	{% load static %}
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Playfair+Display:wght@900&display=swap">
+	<link rel="stylesheet" href="{% static 'css/materialize.css'%}">
+	<link rel="stylesheet" href="{% static 'css/materialize.min.css'%}">
 	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&family=Playfair+Display:wght@900&display=swap">
+	<script src="{% static 'css/materialize.js'%}"></script>
+	<script src="{% static 'css/materialize.js'%}"></script>
 	<script defer src={% static '/js/script.js'%}></script>
 	<title>{% block title %}StudioPal{% endblock %}</title>
 </head>
@@ -50,7 +50,8 @@
 							<span>{% fa5_icon 'search fa-sm' %}</span>
 							<input id="search" type="search" placeholder="search" required>
 						</div>
-					<li>
+					</li>
+					{% if studio_name is not null %}
 					<li>
 					<a href="{% url 'add_instructor_info' user_pk=user.pk %}">
 						<div class="nav-item-with-icon-container">
@@ -59,6 +60,7 @@
 						</div>
 					</a>
 					</li>
+					{% endif %}
 					<li><a href="{% url 'auth_logout' %}">Logout</a></li>
 				</ul>
 				{% endif %}
