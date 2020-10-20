@@ -52,6 +52,7 @@
 						</div>
 					<li>
 					<li>
+					{% if studio_name is null %}
 					<a href="{% url 'add_instructor_info' user_pk=user.pk %}">
 						<div class="nav-item-with-icon-container">
 							<span>{% fa5_icon 'chalkboard-teacher fa-sm' %}</span>
@@ -59,6 +60,7 @@
 						</div>
 					</a>
 					</li>
+					{% endif %}
 					<li><a href="{% url 'auth_logout' %}">Logout</a></li>
 				</ul>
 				{% endif %}
