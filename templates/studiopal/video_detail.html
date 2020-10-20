@@ -28,31 +28,6 @@
 </div>
 </div>
 
-{% load comment_tags %}
-{% include_bootstrap %}
-{% include_static %}
-
-<video width="530" height="440" controls>
-<source src="{{ video.video.url }}" type="video/mp4" />
-<source src="{{ video.video.url }}" type="video/x-flv" />
-<source src="{{ video.video.url }}" type="video/MP2T" />
-<source src="{{ video.video.url }}" type="video/3gpp" />
-<source src="{{ video.video.url }}" type="video/3gpp2" />
-<source src="{{ video.video.url }}" type="video/3gpp-tt" />
-<source src="{{ video.video.url }}" type="video/quicktime" />
-<source src="{{ video.video.url }}" type="video/x-msvideo" />
-<source src="{{ video.video.url }}" type="video/x-ms-wmv" />
-<source src="{{ video.video.url }}" type="video/webm" />
-<source src="{{ video.video.url }}" type="video/ogg" />
-<source src="{{ video.video.url }}" type="video/H264" />
-<source src="{{ video.video.url }}" type="video/H264-RCDO" />
-<source src="{{ video.video.url }}" type="video/H264-SVC" />
-</video>
-
-
-
-
-
 <div id="comments-container" class="pt4 ml5 mb4">
     {% for comment in video.comments.all reversed %}
         <div class="comment" style="padding: 10px;">
@@ -106,6 +81,6 @@
 </script>
 
 
-{% endblock content %}
+{% endblock %}
 
 

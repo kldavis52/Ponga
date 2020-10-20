@@ -4,6 +4,7 @@ from django.views import View
 from .models import User, Video, Comment
 from .forms import InstructorForm, VideoForm, CommentsForm
 import json
+from django.contrib.auth.decorators import login_required
 
 
 @login_required
