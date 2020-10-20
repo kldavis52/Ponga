@@ -51,15 +51,32 @@
 							<input id="search" type="search" placeholder="search" required>
 						</div>
 					</li>
-					{% if studio_name is not null %}
-					<li>
-					<a href="{% url 'add_instructor_info' user_pk=user.pk %}">
+					{% if user.studio_name %}
+						<li>
+						<a href="{% url 'add_instructor_info' user_pk=user.pk %}">
 						<div class="nav-item-with-icon-container">
 							<span>{% fa5_icon 'chalkboard-teacher fa-sm' %}</span>
-							Create studio
+							Edit Studio
 						</div>
 					</a>
+						<li>
+						<a href="{% url 'instructor_detail' user_pk=user.pk %}">
+							<div class="nav-item-with-icon-container">
+								<span>{% fa5_icon 'chalkboard-teacher fa-sm' %}</span>
+								Upload a video
+							</div>
+						</a>
+						</li>
 					</li>
+						{% else %}
+							<li>
+							<a href="{% url 'add_instructor_info' user_pk=user.pk %}">
+							<div class="nav-item-with-icon-container">
+							<span>{% fa5_icon 'chalkboard-teacher fa-sm' %}</span>
+							Create Studio
+							</div>
+							</a>
+							</li>
 					{% endif %}
 					<li><a href="{% url 'auth_logout' %}">Logout</a></li>
 				</ul>
