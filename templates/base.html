@@ -1,18 +1,18 @@
-
-{% load fontawesome_5 %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	{% fontawesome_5_static %}
-	{% load static %}
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="{% static 'css/materialize.css' %}">
-	<link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
-	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&family=Playfair+Display:wght@900&display=swap">
-	<title>{% block title %}StudioPal{% endblock %}</title>
-</head>
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&family=Playfair+Display:wght@900&display=swap"
+    />
+    <title>{% block title %}StudioPal{% endblock %}</title>
+  </head>
   <body>
 		<nav>
 			<div class="nav-wrapper">

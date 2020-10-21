@@ -1,10 +1,13 @@
+import json
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.views import View
-from .models import User, Video, Comment
-from .forms import InstructorForm, VideoForm, CommentsForm
-import json
 from django.contrib.auth.decorators import login_required
+from django.contrib.postgres.search import SearchVector, SearchQuery
+
+from .forms import InstructorForm, VideoForm, CommentsForm
+from .models import Video, Comment
+from users.models import User
 
 
 @login_required
@@ -29,6 +32,7 @@ def landing_page(request):
     videos = Video.objects.all()
     return render(request, "studiopal/landing_page.html", {"videos": videos})
 
+
 @login_required
 def add_comment(request, video_pk):
     video = get_object_or_404(Video, pk=video_pk)
@@ -38,9 +42,11 @@ def add_comment(request, video_pk):
         comment = comment_json["text"]
         new_comment = Comment(text=comment, author=user, video=video)
         new_comment.save()
-        html = f'<p class="comment-text">{new_comment.text}</p>' \
-        f'<p class="comment-author">by <span class="font-weight-bold">{user.username}</span>' \
-        f'</p>'
+        html = (
+            f'<p class="comment-text">{new_comment.text}</p>'
+            f'<p class="comment-author">by <span class="font-weight-bold">{user.username}</span>'
+            f"</p>"
+        )
     return JsonResponse({"html": html})
 
 
@@ -58,13 +64,36 @@ def add_studio_info(request, user_pk):
         request, "studiopal/add_studio_info.html", {"form": form, "user": user}
     )
 
+
 @login_required
 def studio_detail(request, user_pk):
     user = get_object_or_404(User.objects.all(), pk=user_pk)
     return render(request, "studiopal/studio_detail.html", {"user": user})
 
+
 def about(request):
     return render(request, "studiopal/about.html")
 
-def search_results(request):
-    return render(request, 'studiopal/search_results.html')
+
+def search_instructors_videos(request):
+    def search(query):
+
+        search_results = (
+            Video.objects.annotate(
+                search=SearchVector(
+                    "creator__studio_name", "creator__bio", "title", "description"
+                )
+            )
+            .filter(search=query)
+            .distinct("pk")
+        )
+        return search_results
+
+    if request.method == "GET":
+        query = request.GET.get("search")
+        if query:
+            videos = search(query)
+        else:
+            videos = None
+
+    return render("studiopal/search_results.html", {"videos": videos, "query": query})
