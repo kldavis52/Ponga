@@ -96,6 +96,4 @@ def search_instructors_videos(request):
         else:
             videos = None
 
-        return render(
-            "studiopal/search_results.html", {"videos": videos, "query": query}
-        )
+    return render("studiopal/search_results.html", {"videos": videos, "query": query})
