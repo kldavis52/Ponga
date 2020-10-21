@@ -33,8 +33,9 @@ urlpatterns = [
         name="video_detail",
     ),
     path("", views.landing_page, name="landing_page"),
-    path("studiopal/about/", views.about, name='about')
-
+    path("studiopal/about/", views.about, name='about'),
+    path("studiopal/search_results/", views.search_results, name="search_results"),
+    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
