@@ -50,11 +50,18 @@
             </a>
           </li>
           <li class="row">
-            <div class="input-field nav-item-with-icon-container">
-              <span>{% fa5_icon 'search fa-sm' %}</span>
-              <input id="search" type="search" placeholder="search" required />
-              <input id="search-submit" type="submit" value="search" />
-            </div>
+            <form action="{% url 'search_results' %}">
+              <div class="input-field nav-item-with-icon-container">
+                <span>{% fa5_icon 'search fa-sm' %}</span>
+                <input
+                  id="search"
+                  type="search"
+                  placeholder="Search"
+                  required
+                />
+                <button id="search-submit" type="submit">Search</button>
+              </div>
+            </form>
           </li>
           {% if user.studio_name %}
           <li>

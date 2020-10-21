@@ -1,5 +1,4 @@
-{% extends 'base.html' %} {% block content %} {% load fontawesome_5 %} {% load
-static %}
+{% extends 'base.html' %} {% block content %} {% load static %}
 
 <div class="container">
   <div id="hero-img-container" class="row">
@@ -40,7 +39,6 @@ static %}
               <p id="video-card-date">Mar 16 2020</p>
               <p id="video-card-details">
                 {{ video.creator }} • 19K views
-                <span>{% fa5_icon 'eye fa-sm' %}</span>
               </p>
             </div>
           </div>
@@ -74,7 +72,6 @@ static %}
                   <p id="video-card-date">Mar 16 2020</p>
                   <p id="video-card-details">
                     Studio Name • 19K views
-                    <span>{% fa5_icon 'eye fa-sm' %}</span>
                   </p>
                 </div>
               </div>
