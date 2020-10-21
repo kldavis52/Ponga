@@ -49,6 +49,11 @@
 							<span>{% fa5_icon 'search fa-sm' %}</span>
 							<input id="search" type="search" placeholder="search" required>
 						</div>
+						<li class="row">
+							<div class="donate">
+								<a href=https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=i1215%40icloud.com&currency_code=USD><span>{% fa5_icon 'donate fa-sm' %}</span>
+								Donate</a>
+								</div>
 					</li>
 					{% if user.studio_name %}
 						<li>
@@ -82,7 +87,7 @@
 			</div>
 		</nav>
 		<div class="container">
-		</div>		
+		</div>
 		{% block content %} 
 		{% endblock %}
   </body>
