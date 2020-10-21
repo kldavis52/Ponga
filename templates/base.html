@@ -1,8 +1,7 @@
-{% load fontawesome_5 %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    {% fontawesome_5_static %} {% load static %}
+    {% load static %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
@@ -52,7 +51,6 @@
           <li class="row">
             <form action="{% url 'search_results' %}">
               <div class="input-field nav-item-with-icon-container">
-                <span>{% fa5_icon 'search fa-sm' %}</span>
                 <input
                   id="search"
                   type="search"
@@ -67,7 +65,6 @@
           <li>
             <a href="{% url 'add_studio_info' user_pk=user.pk %}">
               <div class="nav-item-with-icon-container">
-                <span>{% fa5_icon 'chalkboard-teacher fa-sm' %}</span>
                 Edit Studio
               </div>
             </a>
@@ -76,7 +73,6 @@
           <li>
             <a href="{% url 'studio_detail' user_pk=user.pk %}">
               <div class="nav-item-with-icon-container">
-                <span>{% fa5_icon 'chalkboard-teacher fa-sm' %}</span>
                 Upload a video
               </div>
             </a>
@@ -85,7 +81,6 @@
           <li>
             <a href="{% url 'add_studio_info' user_pk=user.pk %}">
               <div class="nav-item-with-icon-container">
-                <span>{% fa5_icon 'chalkboard-teacher fa-sm' %}</span>
                 Create Studio
               </div>
             </a>
