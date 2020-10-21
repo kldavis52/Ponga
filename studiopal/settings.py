@@ -42,7 +42,6 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     "materializecssform",
-    "fontawesome_5",
     "registration",
     "django.contrib.admin",
     "django.contrib.auth",
