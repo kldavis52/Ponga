@@ -50,11 +50,14 @@
           </li>
           <li class="row">
             <form action="{% url 'search_results' %}" method="GET">
+              {% csrf_token %}
               <div class="input-field nav-item-with-icon-container">
                 <input
                   id="search"
                   type="search"
-                  placeholder="Search"
+                  name="search"
+                  placeholder="search"
+                  value="{{query}}"
                   required
                 />
                 <button id="search-submit" type="submit">Search</button>
