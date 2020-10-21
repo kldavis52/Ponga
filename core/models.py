@@ -20,7 +20,6 @@ class Video(models.Model):
     upvoted = models.IntegerField(default=0)
     tags = TaggableManager()
 
-
     def __str__(self):
         return self.title
 
