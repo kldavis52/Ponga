@@ -76,26 +76,26 @@ def about(request):
 
 
 def search_instructors_videos(request):
-    query = request.GET.get("search")
-    if query:
-        videos = search(query)
-    else:
-        videos = None
+    def search(query):
 
-    return render(
-        "studiopal/search_results.html", {"videos": videos, "query": query or ""}
-    )
-
-
-def search(query):
-
-    search_results = (
-        Video.objects.annotate(
-            search=SearchVector(
-                "creator__studio_name", "creator__bio", "title", "description"
+        search_results = (
+            Video.objects.annotate(
+                search=SearchVector(
+                    "creator__studio_name", "creator__bio", "title", "description"
+                )
             )
+            .filter(search=query)
+            .distinct("pk")
         )
-        .filter(search=query)
-        .distinct("pk")
-    )
-    return search_results
+        return search_results
+
+    if request.method == "GET":
+        query = request.GET.get("search")
+        if query:
+            videos = search(query)
+        else:
+            videos = None
+
+        return render(
+            "studiopal/search_results.html", {"videos": videos, "query": query}
+        )

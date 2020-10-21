@@ -2,20 +2,8 @@
 static %}
 
 <div class="container">
-  <div id="hero-img-container" class="row">
-    <img
-      class="col s10"
-      id="hero-img"
-      src="{% static 'img/studio_pal_hero_bike.png'%}"
-    />
-    <div class="col s6" id="hero-copy-container">
-      <h2 id="cta-title">With StudioPal your home is your fitness studio.</h2>
-      <span id="cta-subtitle">Stay safe, stay fit, stay connected.</span>
-      <a href="{% url 'about' %}" class="col s6 waves-light btn">Learn more</a>
-    </div>
-  </div>
   <section>
-    <h5 style="margin-top: 100px">Latest Sessions</h5>
+    <h5 style="margin-top: 100px">Search Results</h5>
     <div class="row">
       {% for video in videos %}
       <div class="col m4">
