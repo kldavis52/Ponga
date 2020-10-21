@@ -65,3 +65,6 @@ def studio_detail(request, user_pk):
 
 def about(request):
     return render(request, "studiopal/about.html")
+
+def search_results(request):
+    return render(request, 'studiopal/search_results.html')
