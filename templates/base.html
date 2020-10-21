@@ -2,8 +2,10 @@
 <html lang="en">
   <head>
     {% load static %}
+	
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
     <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
@@ -46,12 +48,12 @@
 					</li>
 					<li class="row">
 						<div class="input-field nav-item-with-icon-container">
-							<span>{% fa5_icon 'search fa-sm' %}</span>
+							<span><i class="fas fa-sm fa-search"></i></span>
 							<input id="search" type="search" placeholder="search" required>
 						</div>
 						<li class="row">
 							<div class="donate">
-								<a href=https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=i1215%40icloud.com&currency_code=USD><span>{% fa5_icon 'donate fa-sm' %}</span>
+								<a href=https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=i1215%40icloud.com&currency_code=USD><span><i class="fas fa-sm fa-donate"></i></span>
 								Donate</a>
 								</div>
 					</li>
@@ -59,14 +61,14 @@
 						<li>
 						<a href="{% url 'add_studio_info' user_pk=user.pk %}">
 						<div class="nav-item-with-icon-container">
-							<span>{% fa5_icon 'chalkboard-teacher fa-sm' %}</span>
+							<span><i class="fas fa-sm fa-edit"></i></span>
 							Edit Studio
 						</div>
 					</a>
 						<li>
 						<a href="{% url 'studio_detail' user_pk=user.pk %}">
 							<div class="nav-item-with-icon-container">
-								<span>{% fa5_icon 'chalkboard-teacher fa-sm' %}</span>
+								<span><i class="fas fa-sm fa-chalkboard"></i></span>
 								Upload a video
 							</div>
 						</a>
@@ -75,7 +77,7 @@
 							<li>
 							<a href="{% url 'add_studio_info' user_pk=user.pk %}">
 							<div class="nav-item-with-icon-container">
-							<span>{% fa5_icon 'chalkboard-teacher fa-sm' %}</span>
+							<span><i class="fas fa-sm fa-chalkboard"></i></span>
 							Create Studio
 							</div>
 							</a>
