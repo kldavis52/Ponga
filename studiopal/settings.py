@@ -24,7 +24,7 @@ environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / ...
 BASE_DIR = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
 # Quick-start development settings - unsuitable for production
@@ -41,8 +41,8 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    'materializecssform',
-    'fontawesome_5',
+    "materializecssform",
+    "fontawesome_5",
     "registration",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -55,12 +55,10 @@ INSTALLED_APPS = [
     "django_extensions",
     "storages",
     # Project-specific
-    
     "core",
     "users",
     "imagekit",
     "taggit",
-    
 ]
 
 MIDDLEWARE = [
@@ -146,9 +144,9 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, "static"),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+STATIC_ROOT = os.path.join(BASE_DIR, "static_root")
 
 # Custom user model
 

@@ -51,24 +51,24 @@ def add_comment(request, video_pk):
 
 
 @login_required()
-def add_instructor_info(request, user_pk):
+def add_studio_info(request, user_pk):
     user = get_object_or_404(User.objects.all(), pk=user_pk)
     if request.method == "POST":
         form = InstructorForm(data=request.POST, instance=user, files=request.FILES)
         if form.is_valid():
             user = form.save()
-            return redirect(to="instructor_detail", user_pk=user.pk)
+            return redirect(to="studio_detail", user_pk=user.pk)
     else:
         form = InstructorForm(instance=user)
     return render(
-        request, "studiopal/add_instructor_info.html", {"form": form, "user": user}
+        request, "studiopal/add_studio_info.html", {"form": form, "user": user}
     )
 
 
 @login_required
-def instructor_detail(request, user_pk):
+def studio_detail(request, user_pk):
     user = get_object_or_404(User.objects.all(), pk=user_pk)
-    return render(request, "studiopal/instructor_detail.html", {"user": user})
+    return render(request, "studiopal/studio_detail.html", {"user": user})
 
 
 def about(request):
