@@ -40,14 +40,6 @@ def video_upload(request):
                 raise Exception("Thumbnail byte stream failed to open properly")
 
             thumbnail = File(thumbnail_buffer)
-            # thumbnail = InMemoryUploadedFile(
-            #     thumbnail_buffer,
-            #     field_name="video_thumbnail",
-            #     name=f"{video_obj}",
-            #     content_type="image/jpeg",
-            #     charset=None,
-            #     size=thumbnail_buffer.len,
-            # )
 
             clip.close()
             video_obj.video_thumbnail.save(f"{video_obj}.jpg", thumbnail)
