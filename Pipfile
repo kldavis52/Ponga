@@ -25,6 +25,7 @@ azure-mgmt-resource = "*"
 azure-mgmt-media = "==1.1.1"
 ipython = "*"
 django-materializecss-form = "*"
+moviepy = "*"
 
 [requires]
 python_version = "3.8"
