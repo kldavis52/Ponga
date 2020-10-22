@@ -2,11 +2,7 @@ import os
 from django.core.files import File
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
-from django.views import View
 from django.contrib.auth.decorators import login_required
-from django.contrib.postgres.search import SearchVector, SearchQuery
-from django.core.files.uploadedfile import InMemoryUploadedFile
-
 
 from moviepy.editor import *
 from PIL import Image
@@ -14,7 +10,7 @@ from PIL import Image
 from .forms import InstructorForm, VideoForm, CommentsForm
 from .models import Video, Comment
 from users.models import User
-from studiopal.settings import AZURE_STATIC_ROOT, MEDIA_ROOT
+from studiopal.settings import AZURE_STATIC_ROOT
 
 
 @login_required
