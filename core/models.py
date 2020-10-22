@@ -29,9 +29,9 @@ class Video(models.Model):
         to=User, on_delete=models.CASCADE, related_name="videos"
     )
     video = models.FileField(upload_to="media/")
-    # thumbnail
+    video_thumbnail = models.ImageField(upload_to="media/img/", null=True, blank=True)
     tags = TaggableManager()
-    liked = models.ManyToManyField(to='like', related_name='videos')
+    liked = models.ManyToManyField(to="like", related_name="videos")
 
     def __str__(self):
         return self.title
@@ -44,9 +44,12 @@ class Comment(models.Model):
         to=User, on_delete=models.CASCADE, related_name="comments"
     )
     video = models.ForeignKey(
-        to=Video, on_delete=models.CASCADE, related_name="comments")
-    
+        to=Video, on_delete=models.CASCADE, related_name="comments"
+    )
+
 
 class Like(models.Model):
     count = models.IntegerField(default=True, blank=True, null=True)
-    user = models.ForeignKey(to=User, related_name='likes', on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(
+        to=User, related_name="likes", on_delete=models.CASCADE, null=True
+    )
