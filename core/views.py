@@ -90,9 +90,7 @@ def search_instructors_videos(request):
         {"videos": videos, "query": query or ""},
     )
     
-def like(request, video_pk):
-    video = get_object_or_404(Video, pk=video_pk)
-    user = request.user
-    if request.method == "POST":
-        video.like.add(request.user)
-    return redirect('studiopal/studio_detail', {video_pk:'video_pk'})
+
+def user_detail(request, user_pk):
+    user = get_object_or_404(User.objects.all(), pk=user_pk)
+    return render(request, "studiopal/user_detail.html", {"user": user})
