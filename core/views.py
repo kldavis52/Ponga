@@ -5,6 +5,7 @@ from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.contrib.postgres.search import SearchVector, SearchQuery
 
+
 from .forms import InstructorForm, VideoForm, CommentsForm
 from .models import Video, Comment
 from users.models import User
@@ -88,3 +89,8 @@ def search_instructors_videos(request):
         "studiopal/search_results.html",
         {"videos": videos, "query": query or ""},
     )
+    
+
+def user_detail(request, user_pk):
+    user = get_object_or_404(User.objects.all(), pk=user_pk)
+    return render(request, "studiopal/user_detail.html", {"user": user})

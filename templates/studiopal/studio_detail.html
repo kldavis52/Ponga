@@ -1,7 +1,9 @@
 {% extends 'base.html' %} {% block content %}
+{% if user.studio_name %}
 <div>
 <img src="{{ user.image_medium.url }}" />
 </div>
+{% else %} {% endif %}
 <div class="container">
 <h2>{{ user.username }}'s Studio</h2>
 </div>
@@ -38,7 +40,7 @@
               >
               <p id="video-card-date">Mar 16 2020</p>
               <p id="video-card-details">
-                {{ video.creator }} • 19K views
+                <h6>{{ video.creator }}</h6> • <h5>{{ video.liked.count }}</h5>
               </p>
             </div>
           </div>
@@ -46,3 +48,4 @@
       </div>
 {% endfor %}
 {% endblock %}
+

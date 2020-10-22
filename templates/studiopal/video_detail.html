@@ -18,6 +18,8 @@
       <source src="{{ video.video.url }}" type="video/H264-SVC" />
     </video>
     <h3>{{ video.title }}</h3>
+    <h5>{{ video.liked.count }}</h5>
+
     <p>published date</p>
     <p>{{ video.description }}</p>
     {% if user.studio_name %}
