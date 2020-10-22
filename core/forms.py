@@ -26,3 +26,4 @@ class InstructorForm(forms.ModelForm):
             "profile_photo",
             "bio",
         ]
+        
