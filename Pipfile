@@ -4,6 +4,8 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pylint = "*"
+prospector = "*"
 
 [packages]
 django = "*"
@@ -25,6 +27,7 @@ azure-mgmt-resource = "*"
 azure-mgmt-media = "==1.1.1"
 ipython = "*"
 django-materializecss-form = "*"
+prospector = "*"
 
 [requires]
 python_version = "3.8"

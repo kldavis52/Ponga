@@ -41,6 +41,7 @@
           <a href="{% url 'studio_detail' user_pk=user.pk %}">
             <li id="nav-item-username">
               <div class="nav-item-with-icon-container">
+              {% if user.studio_name %}
                 <div id="avatar">
                   <img
                     class="col s3 left"
@@ -48,6 +49,7 @@
                     src="{{ user.image_medium.url }}"
                   />
                 </div>
+                {% else %} {% endif %}
                 Hey, {{ user.username }}!
               </div>
             </li>

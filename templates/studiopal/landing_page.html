@@ -29,7 +29,6 @@
             <img
               class="col s3 left"
               id="video-card-avatar"
-              src="{{ user.image_medium.url }}"
             />
             {% else %} {% endif %}
             <div class="col s8 right" style="padding: 0px">
@@ -38,14 +37,13 @@
               >
               <p id="video-card-date">Mar 16 2020</p>
               <p id="video-card-details">
-                {{ video.creator }} • 19K views
+                {{ video.creator }} • {{ video.liked.count }} <i class="fas fa-thumbs-up"></i>
               </p>
             </div>
           </div>
         </div>
       </div>
       {% endfor %}
-
       <section>
         {% comment %}
 
