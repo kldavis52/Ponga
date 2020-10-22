@@ -49,4 +49,4 @@ class Comment(models.Model):
 
 class Like(models.Model):
     count = models.IntegerField(default=True, blank=True, null=True)
-    user = models.ForeignKey(to=User, related_name='favorites', on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(to=User, related_name='likes', on_delete=models.CASCADE, null=True)
