@@ -1,7 +1,7 @@
+import os
 from django import forms
-from django.core.files import File
 from django.core.files.storage import default_storage
-
+from studiopal.settings import AZURE_STATIC_ROOT
 from .models import Video, Comment, User
 from moviepy.editor import *
 from PIL import Image
@@ -11,7 +11,6 @@ class VideoForm(forms.ModelForm):
     title = forms.CharField(widget=forms.TextInput())
     description = forms.CharField(widget=forms.Textarea())
     video = forms.FileField(required=True, widget=forms.FileInput())
-    video_thumbnail = forms.ImageField(widget=forms.HiddenInput())
 
     class Meta:
         model = Video
@@ -19,33 +18,39 @@ class VideoForm(forms.ModelForm):
             "title",
             "description",
             "video",
-            "video_thumbnail",
         ]
 
-    def save(self):
-        user = super(VideoForm, self).save()
-        title = self.cleaned_data.get("title")
-        description = self.cleaned_data.get("description")
-        video = self.cleaned_data.get("video")
+    # def save(self, commit=True):
+    #     video = super(VideoForm, self).save(commit=False)
+    #     title = self.cleaned_data.get("title")
+    #     description = self.cleaned_data.get("description")
+    #     video = self.cleaned_data.get("video")
+    #     with VideoFileClip(video.path, audio=False) as clip:
+    #         duration = clip.duration
+    #         max_duration = int(clip.duration) + 1
+    #         print(max_duration)
+    #         frame_at_second = 3
+    #         thumbnail_frame = clip.get_frame(frame_at_second)
+    #         video_thumbnail = Image.fromarray(thumbnail_frame)
+    #         thumbnail_path = os.path.join(AZURE_STATIC_ROOT, f"{video}.jpg")
+    #         video_thumbnail.save(thumbnail_path)
+    #         clip.close()
 
-        video_thumbnail = create_thumbnail(user.video)
+    #         # create an ImageFile compatable with Django's ORM/Postgres
 
-        def create_thumbnail(video_obj):
-            with VideoFileClip(video_obj.path, audio=False) as clip:
-                duration = clip.duration
-                max_duration = int(clip.duration) + 1
-                frame_at_second = 3
-                thumbnail_clip = clip.get_frame(frame_at_second)
-                clip.close()
-                fh = default_storage.open(video_obj, "wb")
-                video_thumbnail = Image.fromarray(thumbnail_clip)
-                thumbnail_format = "jpg"
-                video_thumbnail.save(fh, thumbnail_format)
-                fh.close()
-                video_thumbnail.save(video_obj.path)
-                return video_thumbnail
+    #         try:
+    #             thumbnail_buffer = open(thumbnail_path, "rb")
+    #         except FileExistsError:
+    #             raise Exception("thumbnail file not captured from video properly")
 
-        return user
+    #         thumbnail = File(thumbnail_buffer)
+
+    #         video.video_thumbnail.save(f"{video}.jpg", thumbnail)
+
+    #     if video.commit:
+    #         video.save()
+
+    #     return video
 
 
 class CommentsForm(forms.ModelForm):

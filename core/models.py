@@ -30,7 +30,7 @@ class Video(models.Model):
     )
     video = models.FileField(upload_to="media/")
     video_thumbnail = models.ImageField(
-        upload_to="img/", default="img/naurto_thumbsup.jpg", null=True, blank=True
+        upload_to="media/img/", default="img/naurto_thumbsup.jpg", null=True, blank=True
     )
     tags = TaggableManager()
     liked = models.ManyToManyField(to="like", related_name="videos")
