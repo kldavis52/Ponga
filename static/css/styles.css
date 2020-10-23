@@ -160,8 +160,8 @@ video {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 16px;
-  }
-  
-  .donate:hover {
+}
+
+.donate:hover {
     background-color: #4242cc;
-  }
+}
