@@ -32,6 +32,7 @@ class Video(models.Model):
     video_thumbnail = models.ImageField(upload_to="media/img/", null=True, blank=True)
     tags = TaggableManager()
     liked = models.ManyToManyField(to="like", related_name="videos")
+    publish_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
