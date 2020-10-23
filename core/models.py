@@ -31,7 +31,6 @@ class Video(models.Model):
     video = models.FileField(upload_to="media/")
     # thumbnail
     tags = TaggableManager()
-    liked = models.ManyToManyField(to='like', related_name='videos')
 
     def __str__(self):
         return self.title
