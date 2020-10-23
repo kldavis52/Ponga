@@ -31,7 +31,7 @@ class Video(models.Model):
     video = models.FileField(upload_to="media/")
     video_thumbnail = models.ImageField(upload_to="media/img/", null=True, blank=True)
     tags = TaggableManager()
-    liked = models.ManyToManyField(to="like", related_name="videos")
+    favorited_by = models.ManyToManyField(to=User, related_name="favorite_videos", blank=True)
     publish_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -49,8 +49,8 @@ class Comment(models.Model):
     )
 
 
-class Like(models.Model):
-    count = models.IntegerField(default=True, blank=True, null=True)
-    user = models.ForeignKey(
-        to=User, related_name="likes", on_delete=models.CASCADE, null=True
-    )
+# class Like(models.Model):
+#     count = models.IntegerField(default=True, blank=True, null=True)
+#     user = models.ForeignKey(
+#         to=User, related_name="likes", on_delete=models.CASCADE, null=True
+#     )

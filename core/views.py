@@ -11,6 +11,7 @@ from .forms import InstructorForm, VideoForm, CommentsForm
 from .models import Video, Comment
 from users.models import User
 from studiopal.settings import AZURE_STATIC_ROOT
+from django.views.decorators.csrf import csrf_exempt
 
 
 @login_required
@@ -126,3 +127,14 @@ def search_instructors_videos(request):
 def user_detail(request, user_pk):
     user = get_object_or_404(User.objects.all(), pk=user_pk)
     return render(request, "studiopal/user_detail.html", {"user": user})
+
+@csrf_exempt
+def toggle_favorite_video(request, video_pk):
+    video = get_object_or_404(Video.objects.all(), pk=video_pk)
+
+    if request.user.is_favorite_video(video):
+        request.user.favorite_videos.remove(video)
+        return JsonResponse({"isFavorite": False})
+    else:
+        request.user.favorite_videos.add(video)
+        return JsonResponse({"isFavorite": True})

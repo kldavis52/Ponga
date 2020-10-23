@@ -46,6 +46,7 @@ urlpatterns = [
         views.search_instructors_videos,
         name="search_results",
     ),
+    path('studiopal/<int:video_pk>/favorite/', views.toggle_favorite_video, name="toggle_favorite_video"), 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
