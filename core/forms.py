@@ -1,14 +1,23 @@
+import os
 from django import forms
+from django.core.files.storage import default_storage
+from studiopal.settings import AZURE_STATIC_ROOT
 from .models import Video, Comment, User
+from moviepy.editor import *
+from PIL import Image
 
 
 class VideoForm(forms.ModelForm):
+    title = forms.CharField(widget=forms.TextInput())
+    description = forms.CharField(widget=forms.Textarea())
+    video = forms.FileField(required=True, widget=forms.FileInput())
+
     class Meta:
         model = Video
         fields = [
             "title",
-            "video",
             "description",
+            "video",
         ]
 
 
