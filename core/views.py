@@ -60,10 +60,7 @@ def video_upload(request):
 
 def video_detail(request, video_pk):
     video = get_object_or_404(Video.objects.all(), pk=video_pk)
-    user_favorite_video = False
-    if request.user.is_authenticated:
-        user_favorite_video = request.user.is_favorite_video(video)
-    return render(request, "studiopal/video_detail.html", {"video": video, 'user_favorite_video': user_favorite_video})
+    return render(request, "studiopal/video_detail.html", {"video": video})
 
 
 def landing_page(request):
@@ -134,11 +131,12 @@ def user_detail(request, user_pk):
 
 @csrf_exempt
 def toggle_favorite_video(request, video_pk):
-    videos = get_object_or_404(Video.objects.all(), pk=video_pk)
-
-    if request.user.is_favorite_video(video):
-        request.user.favorite_videos.remove(video)
-        return JsonResponse({"isFavorite": False})
+    video = get_object_or_404(Video.objects.all(), pk=video_pk)
+    if video.favorites_by(favorite_videos=request.user.pk):
+        return JsonResponse({"favorited": True}, status=200)
     else:
-        request.user.favorite_videos.add(video)
-        return JsonResponse({"isFavorite": True})
+        return JsonResponse({"favorited": False}, status=200)
+   
+
+
+  

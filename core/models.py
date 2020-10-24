@@ -31,11 +31,15 @@ class Video(models.Model):
     video = models.FileField(upload_to="media/")
     video_thumbnail = models.ImageField(upload_to="media/img/", null=True, blank=True)
     tags = TaggableManager()
-    favorited_by = models.ManyToManyField(to=User, related_name="favorite_videos", blank=True)
+    favorites_by = models.ManyToManyField(to=User, related_name="favorite_videos", blank=True)
     publish_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+    
+    def favorited_by(self, video_pk):
+        
+        return self.favorited_by.filter(pk=video_pk).count() == 1
 
 
 class Comment(models.Model):
