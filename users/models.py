@@ -16,3 +16,5 @@ class User(AbstractUser):
     paypal_donation_url = models.CharField(max_length=100, null=True, blank=True)
     
 
+    def is_favorite_video(self, video):
+        return self.favorite_videos.filter(pk=video.pk).count() == 1

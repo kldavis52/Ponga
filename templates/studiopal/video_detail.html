@@ -1,6 +1,12 @@
 {% extends 'base.html' %} {% block content %} {% load static %}
-
-
+<h1>{{ question.title }}</h1>
+{% if user.is_authenticated %}
+{% if user_favorite_video %}
+<a class="no-underline" id="favorited" data-question-id="{{ video.pk }}" href="#">&#9734;</a>
+{% else %}
+<a class="no-underline" id="favorited" data-question-id="{{ video.pk }}" href="#">&#11088;</a>
+{% endif %}
+{% endif %}
 
 <div class="container">
   <div class="row">

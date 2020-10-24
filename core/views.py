@@ -14,6 +14,7 @@ from studiopal.settings import AZURE_STATIC_ROOT
 from django.views.decorators.csrf import csrf_exempt
 
 
+
 @login_required
 def video_upload(request):
     def create_video_thumbnail(video_obj):
@@ -58,8 +59,11 @@ def video_upload(request):
 
 
 def video_detail(request, video_pk):
-    video = Video.objects.get(id=video_pk)
-    return render(request, "studiopal/video_detail.html", {"video": video})
+    video = get_object_or_404(Video.objects.all(), pk=video_pk)
+    user_favorite_video = False
+    if request.user.is_authenticated:
+        user_favorite_video = request.user.is_favorite_video(video)
+    return render(request, "studiopal/video_detail.html", {"video": video, 'user_favorite_video': user_favorite_video})
 
 
 def landing_page(request):
@@ -130,7 +134,7 @@ def user_detail(request, user_pk):
 
 @csrf_exempt
 def toggle_favorite_video(request, video_pk):
-    video = get_object_or_404(Video.objects.all(), pk=video_pk)
+    videos = get_object_or_404(Video.objects.all(), pk=video_pk)
 
     if request.user.is_favorite_video(video):
         request.user.favorite_videos.remove(video)
