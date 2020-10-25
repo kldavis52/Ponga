@@ -10,7 +10,7 @@
         src="{{ user.image_medium.url }}"
     /> 
     </div>
-      <p>Joined on October 13 2020</p>
+      <p>Member since: {{ user.joined_date }}</p>
     </div>
     <div id="studio-bio-container">
       <h2>{{ user.username }}'s Profile</h2>
@@ -25,7 +25,7 @@
     <div id="bio-img-container">
     <div class="row" style="margin-bottom: 0px">
     </div>
-      <p>Joined on October 13 2020</p>
+      <p>Member since {{ user.joined_date }}</p>
     </div>
     <div id="studio-bio-container">
       <h2>{{ user.username }}'s Profile</h2>
@@ -36,7 +36,7 @@
   {% endif %} {% endif %}
   
 
-  <h5 style="margin-top: 50px">Your Favorite Videos</h5>
+  <h5 style="margin-top: 50px">Your Favorite Sessions</h5>
   <div class="row">
     {% for video in user.videos.all %}
     <div class="col m4">
