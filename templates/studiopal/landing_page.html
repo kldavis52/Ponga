@@ -18,10 +18,11 @@
     <div class="row">
       {% for video in videos %}
       <div class="col m4">
-        <div class="card">
-          <div class="card-image">
+        <div class="card small">
+          <div class="card-image" style="height: 100%">
             <a href="{% url 'video_detail' video_pk=video.pk %}">
               <img
+                style="height: 100%"
                 src="{{ video.video_thumbnail.url }}"
                 alt="http://unsplash.it/250/150?gravity=center"
               />
@@ -29,7 +30,7 @@
           </div>
           <div class="card-content row">
             {% if user.studio_name %}
-            <img class="col s3 left" id="video-card-avatar" />
+            <img class="col s3 left" id="video-card-avatar" src="{{ video.creator.image_medium.url }}"/>
             {% else %} {% endif %}
             <div class="col s8 right" style="padding: 0px">
               <span class="truncate" id="video-card-title"
