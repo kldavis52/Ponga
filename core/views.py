@@ -6,6 +6,9 @@ from django.core.files import File
 from .forms import InstructorForm, VideoForm, CommentsForm
 from .models import Video, Comment
 from users.models import User
+from studiopal.settings import AZURE_STATIC_ROOT
+from django.views.decorators.csrf import csrf_exempt
+
 from studiopal.settings import AZURE_STATIC_ROOT, MEDIA_ROOT
 
 from moviepy.editor import *
@@ -51,7 +54,7 @@ def video_upload(request):
 
 
 def video_detail(request, video_pk):
-    video = Video.objects.get(id=video_pk)
+    video = get_object_or_404(Video.objects.all(), pk=video_pk)
     return render(request, "studiopal/video_detail.html", {"video": video})
 
 
@@ -120,3 +123,15 @@ def search_instructors_videos(request):
 def user_detail(request, user_pk):
     user = get_object_or_404(User.objects.all(), pk=user_pk)
     return render(request, "studiopal/user_detail.html", {"user": user})
+
+@csrf_exempt
+def toggle_favorite_video(request, video_pk):
+    video = get_object_or_404(Video.objects.all(), pk=video_pk)
+    if video.favorites_by(favorite_videos=request.user.pk):
+        return JsonResponse({"favorited": True}, status=200)
+    else:
+        return JsonResponse({"favorited": False}, status=200)
+   
+
+
+  

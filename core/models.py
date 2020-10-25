@@ -33,11 +33,15 @@ class Video(models.Model):
         upload_to="media/img/", default="img/naurto_thumbsup.jpg", null=True, blank=True
     )
     tags = TaggableManager()
-    liked = models.ManyToManyField(to="like", related_name="videos")
+    favorites_by = models.ManyToManyField(to=User, related_name="favorite_videos", blank=True)
     publish_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+    
+    def favorited_by(self, video_pk):
+        
+        return self.favorited_by.filter(pk=video_pk).count() == 1
 
 
 class Comment(models.Model):
@@ -51,8 +55,8 @@ class Comment(models.Model):
     )
 
 
-class Like(models.Model):
-    count = models.IntegerField(default=True, blank=True, null=True)
-    user = models.ForeignKey(
-        to=User, related_name="likes", on_delete=models.CASCADE, null=True
-    )
+# class Like(models.Model):
+#     count = models.IntegerField(default=True, blank=True, null=True)
+#     user = models.ForeignKey(
+#         to=User, related_name="likes", on_delete=models.CASCADE, null=True
+#     )

@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from imagekit.processors import ResizeToFit, ResizeToFill
 from imagekit.models import ImageSpecField
 
+
 # Consider creating a custom user model from scratch as detailed at
 # https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#specifying-a-custom-user-model
 
@@ -15,4 +16,4 @@ class User(AbstractUser):
     bio = models.TextField(max_length=5000, null=True)
     paypal_donation_url = models.CharField(max_length=100, null=True, blank=True)
     
-
+    
