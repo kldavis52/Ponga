@@ -15,5 +15,6 @@ class User(AbstractUser):
                                             processors=[ResizeToFit(300, 300)], format='jpeg', options={'quality': 80})
     bio = models.TextField(max_length=5000, null=True)
     paypal_donation_url = models.CharField(max_length=100, null=True, blank=True)
-    
+    user_bio = models.TextField(max_length=5000, null=True)
+    joined_date = models.DateTimeField(auto_now=True)
     

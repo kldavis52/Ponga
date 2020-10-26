@@ -1,10 +1,73 @@
-like {% comment %} {% for video in user.liked.all %} {{ video.title }} {%
-endcomment %} {% comment %}
-<div>
-  <form action="{% url 'user_detail' video_pk=video.pk %}" method="POST">
-    {% csrf_token %}
-    <input type="hidden" />
-    <button type="submit">Like</button>
-  </form>
-</div>
-{% endcomment %}
+{% extends 'base.html' %} 
+{% block content %} 
+{% if user.user_bio %}
+<div class="container">
+  <div id="user-info-container" class="card">
+    <div id="bio-img-container">
+    <div class="row" style="margin-bottom: 0px">
+     <img
+        class="circle"
+        src="{{ user.image_medium.url }}"
+    /> 
+    </div>
+      <p>Member since: {{ user.joined_date }}</p>
+    </div>
+    <div id="studio-bio-container">
+      <h2>{{ user.username }}'s Profile</h2>
+      {{ user.user_bio }}
+      <a  id="edit-bio-btn" class="btn" href="{% url 'add_user_info' user_pk=user.pk %}">Edit Profile</a>
+    </div>
+  </div>
+  {% else%} 
+  {% if user.is_authenticated %}
+  <div class="container">
+  <div id="user-info-container" class="card">
+    <div id="bio-img-container">
+    <div class="row" style="margin-bottom: 0px">
+    </div>
+      <p>Member since {{ user.joined_date }}</p>
+    </div>
+    <div id="studio-bio-container">
+      <h2>{{ user.username }}'s Profile</h2>
+      {{ user.user_bio }}
+      <a  id="edit-bio-btn" class="btn" href="{% url 'add_user_info' user_pk=user.pk %}">Customize your profile</a>
+    </div>
+  </div>
+  {% endif %} {% endif %}
+  
+
+  <h5 style="margin-top: 50px">Your Favorite Sessions</h5>
+  <div class="row">
+    {% for video in user.videos.all %}
+    <div class="col m4">
+      <div class="card small">
+        <div class="card-image" style="height: 100%">
+          <a href="{% url 'video_detail' video_pk=video.pk %}">
+            <img
+              style="height: 100%;"
+              src="{{ video.video_thumbnail.url }}"
+              alt="http://unsplash.it/250/150?gravity=center"
+            />
+          </a>
+        </div>
+        <div class="card-content row">
+          {% if user.user_bio %}
+          <img class="col s3 left" id="video-card-avatar" src="{{ video.creator.image_medium.url }}"/>
+          {% else %} {% endif %}
+          <div class="col s8 right" style="padding: 0px">
+            <span class="truncate" id="video-card-title"
+              >{{ video.title }}</span
+            >
+            <p id="video-card-date">{{ video.publish_date }}</p>
+            <p id="video-card-details">
+              {{ video.creator }} • {{ video.liked.count }}
+              <i class="fas fa-thumbs-up"></i> 
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div> 
+{% endblock %}

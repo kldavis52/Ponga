@@ -11,16 +11,16 @@
         src="{{ user.image_medium.url }}"
     />
     </div>
-      <p>Joined on October 13 2020</p>
+      <p>This studio was created on: {{ user.joined_date }}</p>
     </div>
     <div id="studio-bio-container">
       <h2>{{ user.username }}'s Studio</h2>
-      User-centred web-enabled implement synergistic; engage optimize orchestrate wikis webservices strategize rich turn-key synergize, "integrate," rich supply-chains distributed data-driven syndicate. Widgets facilitate, architect mashups.
+      {{ user.bio }}
       <a  id="edit-bio-btn" class="btn" href="{% url 'add_studio_info' user_pk=user.pk %}">Edit studio</a>
     </div>
   </div>
 
-  <h5 style="margin-top: 50px">Your Videos</h5>
+  <h5 style="margin-top: 50px">Your Sessions</h5>
   <div class="row">
     {% for video in user.videos.all %}
     <div class="col m4">

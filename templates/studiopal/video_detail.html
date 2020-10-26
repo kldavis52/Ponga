@@ -38,8 +38,8 @@
     <div id="video-desc-container">
       <img class="circle" height="55px" width="55px" src="{{ video.creator.image_medium.url }}" />
       <div id="video-desc-creator">
-        <p>username</p> 
-        <p>studio name</p>
+        <p>{{ video.creator.username }}</p> 
+        <p>{{ video.creator.studio_name }}</p>
       </div>
       <div style="width: 100%">
       <p>{{ video.description }}</p>
