@@ -2,30 +2,50 @@
 
 <div class="container">
   <div id="video-container">
-      <video class="col s12" controls>
-        <source src="{{ video.video.url }}" type="video/mp4" />
-        <source src="{{ video.video.url }}" type="video/x-flv" />
-        <source src="{{ video.video.url }}" type="video/MP2T" />
-        <source src="{{ video.video.url }}" type="video/3gpp" />
-        <source src="{{ video.video.url }}" type="video/3gpp2" />
-        <source src="{{ video.video.url }}" type="video/3gpp-tt" />
-        <source src="{{ video.video.url }}" type="video/quicktime" />
-        <source src="{{ video.video.url }}" type="video/x-msvideo" />
-        <source src="{{ video.video.url }}" type="video/x-ms-wmv" />
-        <source src="{{ video.video.url }}" type="video/webm" />
-        <source src="{{ video.video.url }}" type="video/ogg" />
-        <source src="{{ video.video.url }}" type="video/H264" />
-        <source src="{{ video.video.url }}" type="video/H264-RCDO" />
-        <source src="{{ video.video.url }}" type="video/H264-SVC" />
-      </video>
-  <div id="video-details-container">
-    <h5 style="padding:0">{{ video.title }}</h5>
-    <div id="video-details">
-      <p>{{ video.publish_date }} <b>|</b>{{ video.liked.count }}</i> </p>
-      {%  if video.creator.paypal_donation_url  %}
-      <a class="btn" href= "{{ video.creator.paypal_donation_url }}" style="color:#ffffff"><span><i class="fas fa-sm fa-donate"></i></span> Donate</a>
+    <video class="col s12" controls>
+      <source src="{{ video.video.url }}" type="video/mp4" />
+      <source src="{{ video.video.url }}" type="video/x-flv" />
+      <source src="{{ video.video.url }}" type="video/MP2T" />
+      <source src="{{ video.video.url }}" type="video/3gpp" />
+      <source src="{{ video.video.url }}" type="video/3gpp2" />
+      <source src="{{ video.video.url }}" type="video/3gpp-tt" />
+      <source src="{{ video.video.url }}" type="video/quicktime" />
+      <source src="{{ video.video.url }}" type="video/x-msvideo" />
+      <source src="{{ video.video.url }}" type="video/x-ms-wmv" />
+      <source src="{{ video.video.url }}" type="video/webm" />
+      <source src="{{ video.video.url }}" type="video/ogg" />
+      <source src="{{ video.video.url }}" type="video/H264" />
+      <source src="{{ video.video.url }}" type="video/H264-RCDO" />
+      <source src="{{ video.video.url }}" type="video/H264-SVC" />
+    </video>
+    <div id="video-details-container">
+      <h5 style="padding:0">{{ video.title }}</h5>
+      {% if request.user.is_authenticated%}
+      <a
+        id="toggle-like"
+        data-video-id="{{ video.pk }}"
+        class="no-underline pointer dib grow"
+      >
+        {% if liked_video %}
+        <h4>&#10084;</h4>
+        {% else %}
+        <h4>&#9825;</h4>
+        {% endif %}</a
+      >
       {% endif %}
+      <div id="video-details">
+        <p>{{ video.publish_date }} <b>|</b>{{ likes }} Likes</p>
+        {%if video.creator.paypal_donation_url%}
+        <a
+          class="btn"
+          href="{{ video.creator.paypal_donation_url }}"
+          style="color:#ffffff"
+          ><span><i class="fas fa-sm fa-donate"></i></span> Donate</a
+        >
+        {%endif%}
+      </div>
     </div>
+
     <div id="video-desc-container">
       <img
         class="circle"
@@ -125,3 +145,4 @@
   })
 </script>
 {%endblock%}
+
