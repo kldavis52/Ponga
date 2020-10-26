@@ -38,7 +38,7 @@
 
   <h5 style="margin-top: 50px">Your Favorite Sessions</h5>
   <div class="row">
-    {% for video in user.videos.all %}
+    {% for video in user.liked_videos.all %}
     <div class="col m4">
       <div class="card small">
         <div class="card-image" style="height: 100%">
