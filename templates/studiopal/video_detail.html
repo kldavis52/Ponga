@@ -34,7 +34,7 @@
       >
       {% endif %}
       <div id="video-details">
-        <p>{{ video.publish_date }} <b>|</b>{{ likes }} Likes</p>
+        <p>{{ video.publish_date }} </p>
         {%if video.creator.paypal_donation_url%}
         <a
           class="btn"
@@ -145,3 +145,4 @@
   })
 </script>
 {%endblock%}
+
