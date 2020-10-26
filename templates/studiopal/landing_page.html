@@ -21,16 +21,16 @@
         <div class="card small">
           <div class="card-image" style="height: 100%">
             <a href="{% url 'video_detail' video_pk=video.pk %}">
-              <img
-                style="height: 100%"
-                src="{{ video.video_thumbnail.url }}"
-                alt="http://unsplash.it/250/150?gravity=center"
-              />
+              <img style="height: 100%" src="{{ video.video_thumbnail.url }}" />
             </a>
           </div>
           <div class="card-content row">
             {% if user.studio_name %}
-            <img class="col s3 left" id="video-card-avatar" src="{{ video.creator.image_medium.url }}"/>
+            <img
+              class="col s3 left"
+              id="video-card-avatar"
+              src="{{ video.creator.image_medium.url }}"
+            />
             {% else %} {% endif %}
             <div class="col s8 right" style="padding: 0px">
               <span class="truncate" id="video-card-title"
@@ -38,7 +38,7 @@
               >
               <p id="video-card-date">{{ video.publish_date }}</p>
               <p id="video-card-details">
-                {{ video.creator }} • {{ video.liked.count }}
+                {{ video.creator }} • {{ video.likes }}
                 <i class="fas fa-thumbs-up"></i>
               </p>
             </div>

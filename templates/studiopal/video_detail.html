@@ -1,149 +1,147 @@
-{% extends 'base.html' %} {% block content %} {% load static %}
-{% if user.is_authenticated %}
-{% if user_favorite_video %}
-<input type='button' class="no-underline" id="favorited" data-question-id="{{ video.pk }}" href="#">&#9734;</input>
-{% else %}
-<input type='button' class="no-underline" id="favorited" data-question-id="{{ video.pk }}" href="#">&#11088;</input>
-{% endif %}
-{% endif %}
+{%extends "base.html"%} {%load static%} {%block content%}
 
 <div class="container">
   <div id="video-container">
-      <video class="col s12" controls>
-        <source src="{{ video.video.url }}" type="video/mp4" />
-        <source src="{{ video.video.url }}" type="video/x-flv" />
-        <source src="{{ video.video.url }}" type="video/MP2T" />
-        <source src="{{ video.video.url }}" type="video/3gpp" />
-        <source src="{{ video.video.url }}" type="video/3gpp2" />
-        <source src="{{ video.video.url }}" type="video/3gpp-tt" />
-        <source src="{{ video.video.url }}" type="video/quicktime" />
-        <source src="{{ video.video.url }}" type="video/x-msvideo" />
-        <source src="{{ video.video.url }}" type="video/x-ms-wmv" />
-        <source src="{{ video.video.url }}" type="video/webm" />
-        <source src="{{ video.video.url }}" type="video/ogg" />
-        <source src="{{ video.video.url }}" type="video/H264" />
-        <source src="{{ video.video.url }}" type="video/H264-RCDO" />
-        <source src="{{ video.video.url }}" type="video/H264-SVC" />
-      </video>
-  <div id="video-details-container">
-    <h5 style="padding:0">{{ video.title }}</h5>
-    <div id="video-details">
-      <p>{{ video.publish_date }} <b>|</b> a bajillion likes</i> </p>
-      {%  if video.creator.paypal_donation_url  %}
-      <a class="btn" href= "{{ video.creator.paypal_donation_url }}" style="color:#ffffff"><span><i class="fas fa-sm fa-donate"></i></span> Donate</a>
+    <video class="col s12" controls>
+      <source src="{{ video.video.url }}" type="video/mp4" />
+      <source src="{{ video.video.url }}" type="video/x-flv" />
+      <source src="{{ video.video.url }}" type="video/MP2T" />
+      <source src="{{ video.video.url }}" type="video/3gpp" />
+      <source src="{{ video.video.url }}" type="video/3gpp2" />
+      <source src="{{ video.video.url }}" type="video/3gpp-tt" />
+      <source src="{{ video.video.url }}" type="video/quicktime" />
+      <source src="{{ video.video.url }}" type="video/x-msvideo" />
+      <source src="{{ video.video.url }}" type="video/x-ms-wmv" />
+      <source src="{{ video.video.url }}" type="video/webm" />
+      <source src="{{ video.video.url }}" type="video/ogg" />
+      <source src="{{ video.video.url }}" type="video/H264" />
+      <source src="{{ video.video.url }}" type="video/H264-RCDO" />
+      <source src="{{ video.video.url }}" type="video/H264-SVC" />
+    </video>
+    <div id="video-details-container">
+      <h5 style="padding:0">{{ video.title }}</h5>
+      {% if request.user.is_authenticated%}
+      <a
+        id="toggle-like"
+        data-video-id="{{ video.pk }}"
+        class="no-underline pointer dib grow"
+      >
+        {% if liked_video %}
+        <h4>&#10084;</h4>
+        {% else %}
+        <h4>&#9825;</h4>
+        {% endif %}</a
+      >
       {% endif %}
-    </div>
+      <div id="video-details">
+        <p>{{ video.publish_date }} <b>|</b>{{ likes }} Likes</p>
+        {%if video.creator.paypal_donation_url%}
+        <a
+          class="btn"
+          href="{{ video.creator.paypal_donation_url }}"
+          style="color:#ffffff"
+          ><span><i class="fas fa-sm fa-donate"></i></span> Donate</a
+        >
+        {%endif%}
+      </div>
     </div>
 
     <div id="video-desc-container">
-      <img class="circle" height="55px" width="55px" src="{{ video.creator.image_medium.url }}" />
+      <img
+        class="circle"
+        height="55px"
+        width="55px"
+        src="{{ video.creator.image_medium.url }}"
+      />
       <div id="video-desc-creator">
-        <p>{{ video.creator.username }}</p> 
+        <p>{{ video.creator.username }}</p>
         <p>{{ video.creator.studio_name }}</p>
       </div>
       <div style="width: 100%">
-      <p>{{ video.description }}</p>
+        <p>{{ video.description }}</p>
       </div>
     </div>
   </div>
 
   <div id="comments-container">
-    {% for comment in video.comments.all reversed %}
+    {%for comment in video.comments.all reversed%}
     <div class="card" id="comment-content">
       <div class="card-content">
         <p>{{ comment.text }}</p>
         <p id="comment-pub-date">{{comment.pub_date}}</p>
-        <p id="video-author">
-        by <span>{{ comment.author }}</span>
-        </p>
+        <p id="video-author">by <span>{{ comment.author }}</span></p>
       </div>
     </div>
     {% endfor %}
   </div>
-  {% if user.is_authenticated %} 
+  {% if user.is_authenticated %}
   <div class="comment-form">
     {% csrf_token %}
     <textarea id="comment-form"></textarea>
     <button id="comment-button">Add Comments</button>
   </div>
-  
-  {% endif %}
-  {% endblock %}
-  {% block scripts %}
-  <script>
-    const commentButton = document.querySelector("#comment-button")
-    commentButton.addEventListener("click", function(){
-        console.log("button clicked")
-        const csrfToken = document.querySelector("input[name='csrfmiddlewaretoken']").value
-        let commentInput = document.getElementById("comment-form")
-        const videoID =  {{ video.pk }}
-        fetch(`/studiopal/add_comment/${videoID}/`, {
-            method: 'POST',
-            body: JSON.stringify({"text": commentInput.value }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-                'X-CSRFToken': csrfToken
-            }
-        })
-        .then(res => res.json())
-            .then(data => {
-                console.log("Response returned")
-                console.log(data)
-                const commentsContainer = document.querySelector('#comments-container')
-                const newDiv = document.createElement("div")
-                newDiv.className="comment"
-                newDiv.style="padding: 10px;"
-                newDiv.innerHTML = data.html
-                commentsContainer.appendChild(newDiv)
-                commentInput.value =''
-            })
-        })
-  </script>
-
-  {% comment %} <script>
-  const favoriteVideoLink = document.querySelector('#favorited')
-favoriteVideoLink.addEventListener('click', event => {
-  event.preventDefault()
-  const videoId = favoriteVideoLink.dataset.videoId
-  fetch('/studiopal/' + videoId + '/favorite/', {
-    method: 'POST',
-    credentials: 'include'
-  })
-    .then(res => res.json())
-    .then(data => {
-      if (data.isFavorite) {
-        favoriteVideoLink.innerHTML = '&#9734'
-      } else {
-        favoriteVideoLink.innerHTML = '&#11088;'
-      }
-    })
-})
-  </script> {% endcomment %}
-  {% if not user.is_authenticated %}
-  <a href="{% url 'registration_register' %}"><p style = "color: #7787e2";>Register to Comment</p></a>
-  {% endif %}
 </div>
-{% endblock %}
-{% comment %} <script>
-  $('#favorited').click(function (event) {
-    //prevent page reload and default actions
+
+{%endif%} {%if not user.is_authenticated%}
+<a href="{% url 'registration_register' %}"
+  ><p style="color: #7787e2" ;>Register to Comment</p></a
+>
+{%endif%}
+<script>
+  const commentButton = document.querySelector("#comment-button")
+  commentButton.addEventListener("click", function(){
+      console.log("button clicked")
+      const csrfToken = document.querySelector("input[name='csrfmiddlewaretoken']").value
+      let commentInput = document.getElementById("comment-form")
+      const videoID =  {{ video.pk }}
+      fetch(`/studiopal/add_comment/${videoID}/`, {
+          method: 'POST',
+          body: JSON.stringify({"text": commentInput.value }),
+          headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+              'X-CSRFToken': csrfToken
+          }
+      })
+      .then(res => res.json())
+          .then(data => {
+              console.log("Response returned")
+              console.log(data)
+              const commentsContainer = document.querySelector('#comments-container')
+              const newDiv = document.createElement("div")
+              newDiv.className="comment"
+              newDiv.style="padding: 10px;"
+              newDiv.innerHTML = data.html
+              commentsContainer.appendChild(newDiv)
+              commentInput.value =''
+          })
+      })
+</script>
+<script>
+  const toggleLikedLink = document.querySelector('#toggle-like')
+  toggleLikedLink.addEventListener('click', function (event) {
     event.preventDefault()
-    // make POST ajax call
-    $.ajax({
-      type: 'POST',
-      url: "{% url 'toggle_favorite_video' video_pk=video.pk %}",
-      success: function (response) {
-        .then(res => res.json())
-    .then(data => {
-      if (data.favorited) {
-        $("#favorited") = '&#9734'
-      } else {
-         $("#favorited") = '&#11088;'
-      },
-      error: function (response) {
-        //alert for any error
-        alert(response['responseJSON']['error'])
+    const videoId = toggleLikedLink.dataset['videoId']
+
+    fetch(`/studiopal/video_detail/${videoId}/liked/`, {
+      credentials: 'same-origin',
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'X-Requested-With': 'XMLHttpRequest' //Necessary to work with request.is_ajax
       }
     })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        if (data.liked_video) {
+          toggleLikedLink.innerHTML = '<h4>&#10084;</h4>'
+        } else {
+          toggleLikedLink.innerHTML = '<h4>&#9825;</h4>'
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
   })
-</script> {% endcomment %}
+</script>
+{%endblock%}
