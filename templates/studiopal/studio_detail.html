@@ -19,6 +19,11 @@
       <a  id="edit-bio-btn" class="btn" href="{% url 'add_studio_info' user_pk=user.pk %}">Edit studio</a>
     </div>
   </div>
+  <div>
+  {%  if user.paypal_donation_url %}
+      <a class="btn" href= "{{ user.paypal_donation_url }}" style="color:#ffffff"><span><i class="fas fa-sm fa-donate"></i></span> Donate</a>
+      {% endif %}
+  </div>
 
   <h5 style="margin-top: 50px">Your Sessions</h5>
   <div class="row">
