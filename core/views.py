@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.core.files import File
-from .forms import InstructorForm, VideoForm, CommentsForm
+from .forms import InstructorForm, VideoForm, CommentsForm, UserForm
 from .models import Video, Comment
 from users.models import User
 from studiopal.settings import AZURE_STATIC_ROOT
@@ -135,6 +135,19 @@ def search_instructors_videos(request):
 def user_detail(request, user_pk):
     user = get_object_or_404(User.objects.all(), pk=user_pk)
     return render(request, "studiopal/user_detail.html", {"user": user})
+
+
+@login_required
+def add_user_info(request, user_pk):
+    user = get_object_or_404(User.objects.all(), pk=user_pk)
+    if request.method == "POST":
+        form = UserForm(data=request.POST, instance=user, files=request.FILES)
+        if form.is_valid():
+            user = form.save()
+            return redirect(to="user_detail", user_pk=user.pk)
+    else:
+        form = UserForm(instance=user)
+    return render(request, "studiopal/add_user_info.html", {"form": form, "user": user})
 
 
 @login_required

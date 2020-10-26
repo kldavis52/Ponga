@@ -51,6 +51,11 @@ urlpatterns = [
         views.toggle_liked_video,
         name="toggle_liked_video",
     ),
+    path(
+        "studiopal/<int:user_pk>/add_user_info/",
+        views.add_user_info,
+        name="add_user_info",
+    ),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

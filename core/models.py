@@ -47,7 +47,6 @@ class Video(models.Model):
     video_thumbnail = models.ImageField(
         upload_to="media/img/", default="img/naurto_thumbsup.jpg", null=True, blank=True
     )
-    tags = TaggableManager()
     liked_by = models.ManyToManyField(to=User, related_name="liked_videos", blank=True)
     publish_date = models.DateTimeField(auto_now_add=True)
 
