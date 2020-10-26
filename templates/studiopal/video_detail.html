@@ -64,7 +64,7 @@
   </div>
 
   <div id="comments-container">
-    {%for comment in video.comments.all reversed%}
+    {%for comment in video.comments.all %}
     <div class="card" id="comment-content">
       <div class="card-content">
         <p>{{ comment.text }}</p>
@@ -78,7 +78,7 @@
   <div class="comment-form">
     {% csrf_token %}
     <textarea id="comment-form"></textarea>
-    <button id="comment-button">Add Comments</button>
+    <button class="btn" id="comment-button">Add Comments</button>
   </div>
 </div>
 
@@ -109,7 +109,7 @@
               const commentsContainer = document.querySelector('#comments-container')
               const newDiv = document.createElement("div")
               newDiv.className="comment"
-              newDiv.style="padding: 10px;"
+              newDiv.style="padding: 0px;"
               newDiv.innerHTML = data.html
               commentsContainer.appendChild(newDiv)
               commentInput.value =''
