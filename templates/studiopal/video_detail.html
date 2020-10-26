@@ -20,6 +20,7 @@
     </video>
     <div id="video-details-container">
       <h5 style="padding:0">{{ video.title }}</h5>
+      {% if request.user.is_authenticated%}
       <a
         id="toggle-like"
         data-video-id="{{ video.pk }}"
@@ -31,6 +32,7 @@
         <h4>&#9825;</h4>
         {% endif %}</a
       >
+      {% endif %}
       <div id="video-details">
         <p>{{ video.publish_date }} <b>|</b>{{ likes }} Likes</p>
         {%if video.creator.paypal_donation_url%}

@@ -68,7 +68,6 @@
                 class="circle responsive-img"
                 src="{{ user.image_medium.url }}"
               />
-
               Hey, {{ user.username }}! {{ user.pk }}
             </li>
           </a>
@@ -78,37 +77,22 @@
                 <span><i class="fas fa-sm fa-video"></i></span>
                 Upload a video
               </div>
-            </li>
-            {% if not user.is_authenticated %}
-            <li class="row">
-              <a href="{% url 'auth_login' %}">
-                Login
-              </a>
-            </li>
-              <li>
-                <a href="{% url 'registration_register' %}">
-                  Sign up
-                </a>
-              </li>
-            {% else %}
-            {% if user.studio_name %}
-            <a href="{% url 'studio_detail' user_pk=user.pk %}" style="height: 63px;">
-            {% elif user.user_bio %}
-            <a href="{% url 'user_detail' user_pk=user.pk %}" style="height: 63px;">
-            {% elif user.is_authenticated %}
-            <a href="{% url 'user_detail' user_pk=user.pk %}" style="height: 63px;">
-            {% endif %} 
-              <li id="nav-item-username-container">
-                {% if user.user_bio or user.studio_name %}
-                    <img
-                      class="circle responsive-img"
-                      src="{{ user.image_medium.url }}"
-                    />
-                  {% endif %}
-                  Hey, {{ user.username }}!
-                  {{ user.pk }}
-              </li>
             </a>
+          </li>
+          {% endif %} {% if user.user_bio %}
+          <a
+            href="{% url 'user_detail' user_pk=user.pk %}"
+            style="height: 63px;"
+          >
+            <li id="nav-item-username-container">
+              {% if user.user_bio or user.studio_name %}
+              <img
+                class="circle responsive-img"
+                src="{{ user.image_medium.url }}"
+              />
+              {% endif %} Hey, {{ user.username }}! {{ user.pk }}
+            </li>
+          </a>
           <li class="row">
             <a href="{% url 'add_studio_info' user_pk=user.pk %}">
               <div class="nav-item-with-icon-container">

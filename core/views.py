@@ -57,14 +57,20 @@ def video_upload(request):
 def video_detail(request, video_pk):
     video = get_object_or_404(Video.objects.all(), pk=video_pk)
     likes = video.liked_by.count()
-    if video in request.user.liked_videos.all():
-        liked_video = True
-    else:
-        liked_video = False
+    if request.user.is_authenticated:
+        if video in request.user.liked_videos.all():
+            liked_video = True
+        else:
+            liked_video = False
+        return render(
+            request,
+            "studiopal/video_detail.html",
+            {"video": video, "liked_video": liked_video, "likes": likes},
+        )
     return render(
         request,
         "studiopal/video_detail.html",
-        {"video": video, "liked_video": liked_video, "likes": likes},
+        {"video": video, "likes": likes},
     )
 
 
