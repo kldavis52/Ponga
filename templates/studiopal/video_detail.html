@@ -25,19 +25,7 @@
       {%  if video.creator.paypal_donation_url  %}
       <a class="btn" href= "{{ video.creator.paypal_donation_url }}" style="color:#ffffff"><span><i class="fas fa-sm fa-donate"></i></span> Donate</a>
       {% endif %}
-      <div id="video-details">
-        <p>{{ video.publish_date }} <b>|</b>{{ likes }} Likes</p>
-        {%if video.creator.paypal_donation_url%}
-        <a
-          class="btn"
-          href="{{ video.creator.paypal_donation_url }}"
-          style="color:#ffffff"
-          ><span><i class="fas fa-sm fa-donate"></i></span> Donate</a
-        >
-        {%endif%}
-      </div>
     </div>
-
     <div id="video-desc-container">
       <img
         class="circle"
