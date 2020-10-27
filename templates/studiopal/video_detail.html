@@ -27,9 +27,9 @@
         class="no-underline pointer dib grow"
       >
         {% if liked_video %}
-        <h4>&#10084;</h4>
+        <i class="fas fa-heart" style="font-size:30px;color:red"></i>
         {% else %}
-        <h4>&#9825;</h4>
+        <i class="far fa-heart" style="font-size:30px;color:red"></i>
         {% endif %}</a
       >
       {% endif %}
@@ -38,7 +38,7 @@
         {%if video.creator.paypal_donation_url%}
         <a
           class="btn"
-          href="{{ video.creator.paypal_donation_url }}"
+          target="_blank" href="{{ video.creator.paypal_donation_url }} "
           style="color:#ffffff"
           ><span><i class="fas fa-sm fa-donate"></i></span> Donate</a
         >
@@ -134,9 +134,9 @@
       .then(data => {
         console.log(data)
         if (data.liked_video) {
-          toggleLikedLink.innerHTML = '<h4>&#10084;</h4>'
+          toggleLikedLink.innerHTML = '<i class="fas fa-heart" style="font-size:30px;color:red"></i>'
         } else {
-          toggleLikedLink.innerHTML = '<h4>&#9825;</h4>'
+          toggleLikedLink.innerHTML = '<i class="far fa-heart" style="font-size:30px;color:red"></i>'
         }
       })
       .catch(err => {
