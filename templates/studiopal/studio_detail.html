@@ -25,9 +25,7 @@
       <a class="btn" href= "{{ user.paypal_donation_url }}" style="color:#ffffff"><span><i class="fas fa-sm fa-donate"></i></span> Donate</a>
   {% endif %}
   </div>
-
   <section>
-
     <div class="row">
       <h5 style="margin-top: 75px; padding-left: 10px">Your Sessions</h5>
       {% for video in user.videos.all %}
@@ -51,7 +49,7 @@
               >
               <p id="video-card-date">{{ video.publish_date }}</p>
               <p id="video-card-details">
-                {{ video.creator }} | {{ video.likes }} like(s)
+                {{ video.creator }} | {{ video.liked_by.count }} like(s)
               </p>
             </div>
           </div>
@@ -59,37 +57,36 @@
       </div>
       {% endfor %}
     </div>
-
+    <section>
     <div class="row">
-      <h5 style="margin-top: 50px; padding-left: 10px;">Liked Sessions</h5>
+      <h5 style="margin-top: 75px; padding-left: 10px">Favorite Sessions</h5>
       {% for video in user.liked_videos.all %}
       <div class="col m4">
         <div class="card small">
           <div class="card-image" style="height: 100%">
             <a href="{% url 'video_detail' video_pk=video.pk %}">
-              <img
-                style="height: 100%;"
-                src="{{ video.video_thumbnail.url }}"
-                alt="http://unsplash.it/250/150?gravity=center"
-              />
+              <img style="height: 100%" src="{{ video.video_thumbnail.url }}" />
             </a>
           </div>
+          <a href="{% url 'studio_detail' user_pk=video.creator.pk %}">
           <div class="card-content row">
-            <img class="col s3 left" id="video-card-avatar" src="{{ video.creator.image_medium.url }}"/>
+            <img
+              class="col s3 left"
+              id="video-card-avatar"
+              src="{{ video.creator.image_medium.url }}"
+            />
             <div class="col s8 right" style="padding: 0px">
               <span class="truncate" id="video-card-title"
                 >{{ video.title }}</span
               >
               <p id="video-card-date">{{ video.publish_date }}</p>
               <p id="video-card-details">
-                {{ video.creator }} | {{ video.likes }} like(s)
+                {{ video.creator }} | {{ video.liked_by.count }} like(s)
               </p>
             </div>
           </div>
         </div>
       </div>
-    </div>
       {% endfor %}
-  </section>
-</div>
-{% endblock %}
+    </div>
+    {% endblock %}

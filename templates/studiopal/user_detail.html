@@ -1,6 +1,6 @@
 {% extends 'base.html' %} 
-{% block content %} 
-{% if user.user_bio %}
+{% block content %}
+{% if user.user_bio %} 
 <div class="container">
   <div class="card profile-card">
     <div class="bio-img-container">
@@ -13,31 +13,13 @@
     </div>
       <p>Pal since: {{ user.joined_date }}</p>
     </div>
+{% endif %}
     <div class="studio-bio-container">
       <h2>{{ user.username }}'s Profile</h2>
       <div>{{ user.user_bio }}</div>
       <a  id="edit-bio-btn" class="btn edit-bio-btn" href="{% url 'add_user_info' user_pk=user.pk %}">Edit Profile</a>
     </div>
   </div>
-  {% else%}
-  {% endif %}
-  {% if user.is_authenticated %}
-  <div class="container">
-  <div class="card profile-card">
-    <div class="bio-img-container">
-    <div class="row" style="margin-bottom: 0px">
-    </div>
-      <p>Pal since {{ user.joined_date }}</p>
-    </div>
-    <div class="studio-bio-container">
-      <h2>{{ user.username }}'s Profile</h2>
-      <div>{{ user.user_bio }}</div>
-      <a class="btn edit-bio-btn" href="{% url 'add_user_info' user_pk=user.pk %}">Edit profile</a>
-    </div>
-  </div>
-  {% endif %}
-  
-
   <h5 style="margin-top: 50px">Favorite Sessions</h5>
   <div class="row">
     {% for video in user.liked_videos.all %}
@@ -60,8 +42,7 @@
             >
             <p id="video-card-date">{{ video.publish_date }}</p>
             <p id="video-card-details">
-              {{ video.creator }} 
-              <i class="fas fa-thumbs-up"></i> 
+              {{ video.creator }} | {{ video.liked_by.count }} like(s) 
             </p>
           </div>
         </div>
