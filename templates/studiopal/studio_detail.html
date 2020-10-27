@@ -1,7 +1,5 @@
 {% extends 'base.html' %} 
 {% block content %} 
-{% if user.studio_name %}
-
 <div class="container">
   <div id="user-info-container" class="card">
     <div id="bio-img-container">
@@ -16,7 +14,9 @@
     <div id="studio-bio-container">
       <h2>{{ user.username }}'s Studio</h2>
       {{ user.bio }}
+      {% if user.pk is request.user.pk %}
       <a  id="edit-bio-btn" class="btn" href="{% url 'add_studio_info' user_pk=user.pk %}">Edit studio</a>
+      {% endif %}
     </div>
   </div>
   <div>
@@ -24,7 +24,6 @@
       <a class="btn" href= "{{ user.paypal_donation_url }}" style="color:#ffffff"><span><i class="fas fa-sm fa-donate"></i></span> Donate</a>
       {% endif %}
   </div>
-
   <h5 style="margin-top: 50px">Your Sessions</h5>
   <div class="row">
     {% for video in user.videos.all %}
@@ -39,10 +38,9 @@
             />
           </a>
         </div>
+        <a href="{% url 'studio_detail' user_pk=video.creator.pk %}">
         <div class="card-content row">
-          {% if user.studio_name %}
-          <img class="col s3 left" id="video-card-avatar" src="{{ video.creator.image_medium.url }}"/>
-          {% else %} {% endif %}
+          <img class="col s3 left" id="video-card-avatar" src="{{ video.creator.image_medium.url }}"/></a>
           <div class="col s8 right" style="padding: 0px">
             <span class="truncate" id="video-card-title"
               >{{ video.title }}</span
@@ -59,5 +57,4 @@
     {% endfor %}
   </div>
 </div>
-{% endif %}
 {% endblock %}

@@ -40,7 +40,6 @@ urlpatterns = [
     ),
     path("studiopal/user_detail/<int:user_pk>/", views.user_detail, name="user_detail"),
     path("", views.landing_page, name="landing_page"),
-    path("studiopal/about/", views.about, name="about"),
     path(
         "studiopal/search_results/",
         views.search_instructors_videos,

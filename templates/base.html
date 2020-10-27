@@ -62,6 +62,7 @@
             {% elif user.is_authenticated %}
             <a href="{% url 'user_detail' user_pk=user.pk %}" style="height: 63px;">
             {% endif %} 
+            {% if user.pk is request.user.pk %}
               <li id="nav-item-username-container">
                 {% if user.user_bio or user.studio_name %}
                     <img
@@ -71,10 +72,11 @@
                   {% endif %}
                   Hey, {{ user.username }}!
               </li>
+            {% endif %}
             </a>
             <li class="row">
             </li>
-            {% if user.studio_name %}
+            {% if user.studio_name and user.pk is request.user.pk %}
             <li class="row">
               <a href="{% url 'video_upload' %}">
                 <div class="nav-item-with-icon-container">
@@ -84,6 +86,7 @@
               </a>
             </li>
             {% else %}
+            {% if user.pk is request.user.pk %}
             <li class="row">
               <a href="{% url 'add_studio_info' user_pk=user.pk %}">
                 <div class="nav-item-with-icon-container">
@@ -92,6 +95,7 @@
                 </div>
               </a>
             </li>
+            {% endif %}
             {% endif %}
             <li class="row">
               <a href="{% url 'auth_logout' %}">Logout</a>

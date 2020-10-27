@@ -120,10 +120,6 @@ def studio_detail(request, user_pk):
     return render(request, "studiopal/studio_detail.html", {"user": user})
 
 
-def about(request):
-    return render(request, "studiopal/about.html")
-
-
 def search_instructors_videos(request):
     if request.method == "GET":
         query = request.GET.get("search")
