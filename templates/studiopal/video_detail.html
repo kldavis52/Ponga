@@ -1,6 +1,6 @@
 {%extends "base.html"%} {%load static%} {%block content%}
 
-<div class="container">
+<div class="container" style="display: flex; width: 100%">
   <div id="video-container">
     <video class="col s12" controls>
       <source src="{{ video.video.url }}" type="video/mp4" />
@@ -19,20 +19,21 @@
       <source src="{{ video.video.url }}" type="video/H264-SVC" />
     </video>
     <div id="video-details-container">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
       <h5 style="padding:0">{{ video.title }}</h5>
       {% if request.user.is_authenticated%}
-      <a
-        id="toggle-like"
-        data-video-id="{{ video.pk }}"
-        class="no-underline pointer dib grow"
-      >
-        {% if liked_video %}
-        <h4>&#10084;</h4>
-        {% else %}
-        <h4>&#9825;</h4>
-        {% endif %}</a
-      >
+        <a
+          id="toggle-like"
+          data-video-id="{{ video.pk }}"
+          class="no-underline pointer dib grow"
+        >
+          {% if liked_video %}
+          <i class="fas  fa-lg fa-heart"></i>
+          {% else %}
+          <i class="far fa-lg fa-heart"></i>
+          {% endif %}</a>
       {% endif %}
+    </div>
       <div id="video-details">
         <p>{{ video.publish_date }} </p>
         {%if video.creator.paypal_donation_url%}
@@ -45,20 +46,21 @@
         {%endif%}
       </div>
     </div>
-
-    <div id="video-desc-container">
-      <img
-        class="circle"
-        height="55px"
-        width="55px"
-        src="{{ video.creator.image_medium.url }}"
-      />
-      <div id="video-desc-creator">
-        <p>{{ video.creator.username }}</p>
-        <p>{{ video.creator.studio_name }}</p>
-      </div>
-      <div style="width: 100%">
-        <p>{{ video.description }}</p>
+    <div  class="card">
+      <div class="card-content" id="video-desc-container">
+        <img
+          class="circle"
+          height="55px"
+          width="55px"
+          src="{{ video.creator.image_medium.url }}"
+        />
+        <div id="video-desc-creator">
+          <p>{{ video.creator.username }}</p>
+          <p>{{ video.creator.studio_name }}</p>
+        </div>
+        <div style="width: 100%; max-height: 150px; overflow-y: scroll;">
+          <p>{{ video.description }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -73,12 +75,12 @@
       </div>
     </div>
     {% endfor %}
-  </div>
-  {% if user.is_authenticated %}
-  <div class="comment-form">
-    {% csrf_token %}
-    <textarea id="comment-form"></textarea>
-    <button class="btn" id="comment-button">Add Comments</button>
+    {% if user.is_authenticated %}
+    <div class="comment-form">
+      {% csrf_token %}
+      <textarea id="comment-form"></textarea>
+      <button class="btn" id="comment-button">Add Comment</button>
+    </div>
   </div>
 </div>
 

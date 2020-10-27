@@ -15,8 +15,8 @@
   </div>
   {% endif %}
   <section>
-    <h5 style="margin-top: 100px">Latest Sessions</h5>
     <div class="row">
+      <h5 style="margin-top: 75px; padding-left: 10px">Latest Sessions</h5>
       {% for video in videos %}
       <div class="col m4">
         <div class="card small">
@@ -38,18 +38,17 @@
               >
               <p id="video-card-date">{{ video.publish_date }}</p>
               <p id="video-card-details">
-                {{ video.creator }} • {{ video.likes }}
-                <i class="fas fa-thumbs-up"></i>
+                {{ video.creator }} | {{ video.likes }} like(s)
               </p>
             </div>
           </div>
         </div>
       </div>
       {% endfor %}
-    <div>
-    <section>
-    <h5 style="margin-top: 100px">Liked Sessions</h5>
+    </div>
+
     <div class="row">
+      <h5 style="margin-top: 75px; padding-left: 10px">Liked Sessions</h5>
       {% for video in user.liked_videos.all %}
       <div class="col m4">
         <div class="card small">
@@ -58,6 +57,7 @@
               <img style="height: 100%" src="{{ video.video_thumbnail.url }}" />
             </a>
           </div>
+          <a href="{% url 'studio_detail' user_pk=video.creator.pk %}"></a>
           <div class="card-content row">
             <img
               class="col s3 left"
@@ -70,13 +70,13 @@
               >
               <p id="video-card-date">{{ video.publish_date }}</p>
               <p id="video-card-details">
-                {{ video.creator }} • {{ video.likes }}
-                <i class="fas fa-thumbs-up"></i>
+                {{ video.creator }} | {{ video.likes }} like(s)
               </p>
             </div>
           </div>
         </div>
       </div>
-      </div>
       {% endfor %}
+    </section>
+</div>
 {% endblock %}

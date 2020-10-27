@@ -18,7 +18,9 @@
     <title>{% block title %}StudioPal{% endblock %}</title>
   </head>
   <body>
-  <div id="background-img"></div>
+  <div id="background-img">
+    <p> StudioPal © 2020</p>
+  </div>
  <nav>
       <div class="nav-wrapper">
           <a href="{% url 'landing_page' %}" class="brand-logo">
@@ -27,7 +29,7 @@
             </div>
           </a>
           <ul class="right hide-on-med-and-down" style="display: flex">
-            <li class="row">
+            <li id="search" class="row">
               <div class="nav-item-with-icon-container">
                 <span><i class="fas fa-sm fa-search"></i></span>
                 <form id="nav-search" action="{% url 'search_results' %}" method="GET">
