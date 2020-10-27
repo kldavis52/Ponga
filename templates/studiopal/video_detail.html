@@ -22,16 +22,17 @@
     <div style="display: flex; justify-content: space-between; align-items: center;">
       <h5 style="padding:0">{{ video.title }}</h5>
       {% if request.user.is_authenticated%}
-        <a
-          id="toggle-like"
-          data-video-id="{{ video.pk }}"
-          class="no-underline pointer dib grow"
-        >
-          {% if liked_video %}
-          <i class="fas  fa-lg fa-heart"></i>
-          {% else %}
-          <i class="far fa-lg fa-heart"></i>
-          {% endif %}</a>
+      <a
+        id="toggle-like"
+        data-video-id="{{ video.pk }}"
+        class="no-underline pointer dib grow"
+      >
+        {% if liked_video %}
+        <i class="fas fa-heart" style="font-size:30px;color:red"></i>
+        {% else %}
+        <i class="far fa-heart" style="font-size:30px;color:red"></i>
+        {% endif %}</a
+      >
       {% endif %}
     </div>
       <div id="video-details">
@@ -39,7 +40,7 @@
         {%if video.creator.paypal_donation_url%}
         <a
           class="btn"
-          href="{{ video.creator.paypal_donation_url }}"
+          target="_blank" href="{{ video.creator.paypal_donation_url }} "
           style="color:#ffffff"
           ><span><i class="fas fa-sm fa-donate"></i></span> Donate</a
         >
@@ -136,9 +137,9 @@
       .then(data => {
         console.log(data)
         if (data.liked_video) {
-          toggleLikedLink.innerHTML = '<h4>&#10084;</h4>'
+          toggleLikedLink.innerHTML = '<i class="fas fa-heart" style="font-size:30px;color:red"></i>'
         } else {
-          toggleLikedLink.innerHTML = '<h4>&#9825;</h4>'
+          toggleLikedLink.innerHTML = '<i class="far fa-heart" style="font-size:30px;color:red"></i>'
         }
       })
       .catch(err => {
