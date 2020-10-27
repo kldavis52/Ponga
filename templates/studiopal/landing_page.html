@@ -3,18 +3,15 @@
 <div class="container">
 {% if not user.is_authenticated %}
   <div id="hero-img-container" class="row">
-    <img
-      class="col s10"
-      id="hero-img"
-      src="{% static 'img/studio_pal_hero_bike.png'%}"
-    />
     <div class="col s6" id="hero-copy-container">
       <h2 id="cta-title">With StudioPal your home is your fitness studio.</h2>
       <span id="cta-subtitle">Stay safe, stay fit, stay connected.</span>
     </div>
   </div>
   {% endif %}
+
   <section>
+
     <div class="row">
       <h5 style="margin-top: 75px; padding-left: 10px">Latest Sessions</h5>
       {% for video in videos %}
@@ -77,6 +74,6 @@
         </div>
       </div>
       {% endfor %}
-    </section>
+  </section>
 </div>
 {% endblock %}

@@ -2,41 +2,43 @@
 {% block content %} 
 {% if user.user_bio %}
 <div class="container">
-  <div id="user-info-container" class="card">
-    <div id="bio-img-container">
+  <div class="card profile-card">
+    <div class="bio-img-container">
     <div class="row" style="margin-bottom: 0px">
      <img
         class="circle"
         src="{{ user.image_medium.url }}"
+        style="margin-bottom: 10px;"
     /> 
     </div>
-      <p>Member since: {{ user.joined_date }}</p>
+      <p>Pal since: {{ user.joined_date }}</p>
     </div>
-    <div id="studio-bio-container">
+    <div class="studio-bio-container">
       <h2>{{ user.username }}'s Profile</h2>
-      {{ user.user_bio }}
-      <a  id="edit-bio-btn" class="btn" href="{% url 'add_user_info' user_pk=user.pk %}">Edit Profile</a>
+      <div>{{ user.user_bio }}</div>
+      <a  id="edit-bio-btn" class="btn edit-bio-btn" href="{% url 'add_user_info' user_pk=user.pk %}">Edit Profile</a>
     </div>
   </div>
-  {% else%} 
+  {% else%}
+  {% endif %}
   {% if user.is_authenticated %}
   <div class="container">
-  <div id="user-info-container" class="card">
-    <div id="bio-img-container">
+  <div class="card profile-card">
+    <div class="bio-img-container">
     <div class="row" style="margin-bottom: 0px">
     </div>
-      <p>Member since {{ user.joined_date }}</p>
+      <p>Pal since {{ user.joined_date }}</p>
     </div>
-    <div id="studio-bio-container">
+    <div class="studio-bio-container">
       <h2>{{ user.username }}'s Profile</h2>
-      {{ user.user_bio }}
-      <a  id="edit-bio-btn" class="btn" href="{% url 'add_user_info' user_pk=user.pk %}">Customize your profile</a>
+      <div>{{ user.user_bio }}</div>
+      <a class="btn edit-bio-btn" href="{% url 'add_user_info' user_pk=user.pk %}">Edit profile</a>
     </div>
   </div>
-  {% endif %} {% endif %}
+  {% endif %}
   
 
-  <h5 style="margin-top: 50px">Your Favorite Sessions</h5>
+  <h5 style="margin-top: 50px">Favorite Sessions</h5>
   <div class="row">
     {% for video in user.liked_videos.all %}
     <div class="col m4">

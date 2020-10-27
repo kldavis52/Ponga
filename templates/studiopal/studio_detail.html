@@ -1,8 +1,8 @@
 {% extends 'base.html' %} 
 {% block content %} 
 <div class="container">
-  <div id="profile-card" class="card">
-    <div id="bio-img-container">
+  <div class="card profile-card">
+    <div class="bio-img-container">
     <div class="row" style="margin-bottom: 0px">
       <img
         class="circle"
@@ -12,50 +12,84 @@
     </div>
       <p>Studio created on: {{ user.joined_date }}</p>
     </div>
-    <div id="studio-bio-container">
+    <div class="studio-bio-container">
       <h2>{{ user.username }}'s Studio</h2>
       <div>{{ user.bio }}</div>
       {% if user.pk is request.user.pk %}
-      <a  id="edit-bio-btn" class="btn" href="{% url 'add_studio_info' user_pk=user.pk %}">Edit studio</a>
+      <a class="btn edit-bio-btn" href="{% url 'add_studio_info' user_pk=user.pk %}">Edit studio</a>
       {% endif %}
     </div>
   </div>
   <div>
   {%  if user.paypal_donation_url %}
       <a class="btn" href= "{{ user.paypal_donation_url }}" style="color:#ffffff"><span><i class="fas fa-sm fa-donate"></i></span> Donate</a>
-      {% endif %}
+  {% endif %}
   </div>
-  <h5 style="margin-top: 50px; padding-left: 10px">Your Sessions</h5>
-  <div class="row">
-    {% for video in user.videos.all %}
-    <div class="col m4">
-      <div class="card small">
-        <div class="card-image" style="height: 100%">
-          <a href="{% url 'video_detail' video_pk=video.pk %}">
+
+  <section>
+
+    <div class="row">
+      <h5 style="margin-top: 75px; padding-left: 10px">Your Sessions</h5>
+      {% for video in user.videos.all %}
+      <div class="col m4">
+        <div class="card small">
+          <div class="card-image" style="height: 100%">
+            <a href="{% url 'video_detail' video_pk=video.pk %}">
+              <img style="height: 100%" src="{{ video.video_thumbnail.url }}" />
+            </a>
+          </div>
+          <a href="{% url 'studio_detail' user_pk=video.creator.pk %}">
+          <div class="card-content row">
             <img
-              style="height: 100%;"
-              src="{{ video.video_thumbnail.url }}"
-              alt="http://unsplash.it/250/150?gravity=center"
+              class="col s3 left"
+              id="video-card-avatar"
+              src="{{ video.creator.image_medium.url }}"
             />
-          </a>
+            <div class="col s8 right" style="padding: 0px">
+              <span class="truncate" id="video-card-title"
+                >{{ video.title }}</span
+              >
+              <p id="video-card-date">{{ video.publish_date }}</p>
+              <p id="video-card-details">
+                {{ video.creator }} | {{ video.likes }} like(s)
+              </p>
+            </div>
+          </div>
         </div>
-        <a href="{% url 'studio_detail' user_pk=video.creator.pk %}">
-        <div class="card-content row">
-          <img class="col s3 left" id="video-card-avatar" src="{{ video.creator.image_medium.url }}"/></a>
-          <div class="col s8 right" style="padding: 0px">
-            <span class="truncate" id="video-card-title"
-              >{{ video.title }}</span
-            >
-            <p id="video-card-date">{{ video.publish_date }}</p>
-            <p id="video-card-details">
-              {{ video.creator }} • {{ video.liked.count }}
-              <i class="fas fa-thumbs-up"></i>
-            </p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="row">
+      <h5 style="margin-top: 50px; padding-left: 10px;">Liked Sessions</h5>
+      {% for video in user.liked_videos.all %}
+      <div class="col m4">
+        <div class="card small">
+          <div class="card-image" style="height: 100%">
+            <a href="{% url 'video_detail' video_pk=video.pk %}">
+              <img
+                style="height: 100%;"
+                src="{{ video.video_thumbnail.url }}"
+                alt="http://unsplash.it/250/150?gravity=center"
+              />
+            </a>
+          </div>
+          <div class="card-content row">
+            <img class="col s3 left" id="video-card-avatar" src="{{ video.creator.image_medium.url }}"/>
+            <div class="col s8 right" style="padding: 0px">
+              <span class="truncate" id="video-card-title"
+                >{{ video.title }}</span
+              >
+              <p id="video-card-date">{{ video.publish_date }}</p>
+              <p id="video-card-details">
+                {{ video.creator }} | {{ video.likes }} like(s)
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    {% endfor %}
-  </div>
+      {% endfor %}
+  </section>
 </div>
 {% endblock %}
