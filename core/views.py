@@ -109,6 +109,7 @@ def add_studio_info(request, user_pk):
             return redirect(to="studio_detail", user_pk=user.pk)
     else:
         form = InstructorForm(instance=user)
+        print(InstructorForm(instance=user))
     return render(
         request, "studiopal/add_studio_info.html", {"form": form, "user": user}
     )
@@ -118,10 +119,6 @@ def add_studio_info(request, user_pk):
 def studio_detail(request, user_pk):
     user = get_object_or_404(User.objects.all(), pk=user_pk)
     return render(request, "studiopal/studio_detail.html", {"user": user})
-
-
-def about(request):
-    return render(request, "studiopal/about.html")
 
 
 def search_instructors_videos(request):
