@@ -2,27 +2,30 @@
 
 <div class="container">
   <section>
-    <h5 style="margin-top: 100px">Search Results</h5>
+    <h5 style="margin-top: 75px; padding-left: 10px">Search Results</h5>
     <div class="row">
       {% for video in videos %}
       <div class="col m4">
-        <div class="card">
-          <div class="card-image">
+        <div class="card small">
+          <div class="card-image" style="height: 100%">
             <a href="{% url 'video_detail' video_pk=video.pk %}">
-              <img src="{{ video.video_thumbnail.url }}" />
+              <img  style="height: 100%" src="{{ video.video_thumbnail.url }}" />
             </a>
           </div>
+          <a href="{% url 'studio_detail' user_pk=video.creator.pk %}">
           <div class="card-content row">
-            {% if user.studio_name %}
-            <img class="col s3 left" id="video-card-avatar" src="#" />
-            {% else %} {% endif %}
+            <img
+              class="col s3 left"
+              id="video-card-avatar"
+              src="{{ video.creator.image_medium.url }}"
+            />
             <div class="col s8 right" style="padding: 0px">
               <span class="truncate" id="video-card-title"
                 >{{ video.title }}</span
               >
               <p id="video-card-date">{{ video.publish_date }}</p>
               <p id="video-card-details">
-                {{ video.creator }} • {{ video.num_likes }}
+                {{ video.creator }} | {{ video.likes }} like(s)
               </p>
             </div>
           </div>
