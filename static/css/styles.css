@@ -4,6 +4,16 @@
 
 /* Global Styles */
 
+#background-img {
+    background: url(/static/img/studio_pal_bg.svg) 0 no-repeat;
+    background-size: cover;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: -1;
+    opacity: .75;
+}
+
 body, html {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
