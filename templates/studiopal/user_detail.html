@@ -19,7 +19,7 @@
         /> 
       {% endif %}
     </div>
-      <p>Pal since: {{ user.joined_date }}</p>
+      <p class="subtitle">Pal since: {{ user.joined_date }}</p>
     </div>
     <div class="studio-bio-container">
       <h2>{{ user.username }}'s Profile</h2>
@@ -37,33 +37,35 @@
   <h5 style="margin-top: 50px">{{ user.username }}'s Favorite Sessions</h5>
   <div class="row">
     {% for video in user.liked_videos.all %}
-    <div class="col m4">
-      <div class="card small">
-        <div class="card-image" style="height: 100%">
-          <a href="{% url 'video_detail' video_pk=video.pk %}">
-            <img
-              style="height: 100%;"
-              src="{{ video.video_thumbnail.url }}"
-              alt="http://unsplash.it/250/150?gravity=center"
-            />
-          </a>
-        </div>
-        <div class="card-content row">
-          <img class="col s3 left" id="video-card-avatar" src="{{ video.creator.image_medium.url }}"/>
-          <div class="col s8 right" style="padding: 0px">
-            <span class="truncate" id="video-card-title"
-              >{{ video.title }}</span
-            >
-            <p id="video-card-date">{{ video.publish_date }}</p>
-            <p id="video-card-details">
-              {{ video.creator }} | {{ video.liked_by.count }} like(s) 
-            </p>
+      <div class="col m4">
+          <div class="card small">
+            <div class="card-image" style="height: 100%">
+              <a href="{% url 'video_detail' video_pk=video.pk %}">
+                <img style="height: 100%" src="{{ video.video_thumbnail.url }}" />
+              </a>
+            </div>
+            <div class="card-content row">
+              <a href="{% url 'studio_detail' user_pk=video.creator.pk %}">
+              <img
+                class="col s3 left"
+                id="video-card-avatar"
+                src="{{ video.creator.image_medium.url }}"
+              />
+              </a>
+              <div class="col s8 right" style="padding: 0px">
+                <span class="truncate" id="video-card-title"
+                  ><a href="{% url 'video_detail' video_pk=video.pk %}">{{ video.title }}</a></span
+                >
+                <p id="video-card-date">{{ video.publish_date }}</p>
+                <p id="video-card-details">
+                  <a href="{% url 'studio_detail' user_pk=video.creator.pk %}">{{ video.creator }}</a> | {{ video.liked_by.count }} <i class="fas fa-heart fa-sm" style="color:#6767f6"></i>
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
       </div>
-    </div>
     {% endfor %}
-    {% if not video %}
+    {% if not user.liked_videos.all %}
     <div class="card empty-state">
       <div class="card-content">
         No favorited sessions yet. 

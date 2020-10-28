@@ -2,12 +2,10 @@
 
 <div class="container">
 {% if not user.is_authenticated %}
-  <div id="hero-img-container" class="row">
-    <div class="col s6" id="hero-copy-container">
+    <div>
       <h2 id="cta-title">With StudioPal your home is your fitness studio.</h2>
       <span id="cta-subtitle">Stay safe, stay fit, stay connected.</span>
     </div>
-  </div>
   {% endif %}
   <section>
     <div class="row">
@@ -20,20 +18,21 @@
               <img style="height: 100%" src="{{ video.video_thumbnail.url }}" />
             </a>
           </div>
-          <a href="{% url 'studio_detail' user_pk=video.creator.pk %}">
           <div class="card-content row">
+            <a href="{% url 'studio_detail' user_pk=video.creator.pk %}">
             <img
               class="col s3 left"
               id="video-card-avatar"
               src="{{ video.creator.image_medium.url }}"
             />
+            </a>
             <div class="col s8 right" style="padding: 0px">
               <span class="truncate" id="video-card-title"
-                >{{ video.title }}</span
+                ><a href="{% url 'video_detail' video_pk=video.pk %}">{{ video.title }}</a></span
               >
               <p id="video-card-date">{{ video.publish_date }}</p>
               <p id="video-card-details">
-                {{ video.creator }} | {{ video.likes }} like(s)
+                <a href="{% url 'studio_detail' user_pk=video.creator.pk %}">{{ video.creator }}</a> | {{ video.likes }} <i class="fas fa-heart fa-sm" style="color:#6767f6"></i>
               </p>
             </div>
           </div>
@@ -52,26 +51,34 @@
               <img style="height: 100%" src="{{ video.video_thumbnail.url }}" />
             </a>
           </div>
-          <a href="{% url 'studio_detail' user_pk=video.creator.pk %}">
           <div class="card-content row">
+            <a href="{% url 'studio_detail' user_pk=video.creator.pk %}">
             <img
               class="col s3 left"
               id="video-card-avatar"
               src="{{ video.creator.image_medium.url }}"
             />
+            </a>
             <div class="col s8 right" style="padding: 0px">
               <span class="truncate" id="video-card-title"
-                >{{ video.title }}</span
+                ><a href="{% url 'video_detail' video_pk=video.pk %}">{{ video.title }}</a></span
               >
               <p id="video-card-date">{{ video.publish_date }}</p>
               <p id="video-card-details">
-                {{ video.creator }} | {{ video.liked_by.count }} like(s)
+                <a href="{% url 'studio_detail' user_pk=video.creator.pk %}">{{ video.creator }}</a> | {{ video.likes }} <i class="fas fa-heart fa-sm" style="color:#6767f6"></i>
               </p>
             </div>
           </div>
         </div>
       </div>
       {% endfor %}
+    {% if not user.liked_videos.all %}
+    <div class="card empty-state">
+      <div class="card-content">
+        No favorited sessions yet. 
+      </div>
+    </div>
+    {% endif %}
   </section>
 </div>
 {% endblock %}
