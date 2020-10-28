@@ -168,8 +168,10 @@ def toggle_liked_video(request, video_pk):
     request.user.liked_videos.add(video)
     return JsonResponse({"liked_video": True, "likes": likes}, status=200)
 
+
 def registration_transfer(request):
     return render(request, "studiopal/registration_transfer.html")
 
+
 class MyRegistrationView(RegistrationView):
-    success_url = reverse_lazy('add_studio_info')
+    success_url = reverse_lazy("add_studio_info")
