@@ -3,12 +3,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.core.files import File
-from .forms import InstructorForm, VideoForm, CommentsForm, UserForm
+from .forms import InstructorForm, VideoForm, CommentsForm, UserForm, RegistrationForm
 from .models import Video, Comment
 from users.models import User
 from studiopal.settings import AZURE_STATIC_ROOT
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from registration.backends.simple.views import RegistrationView
+from django.urls import reverse_lazy
 
 from studiopal.settings import AZURE_STATIC_ROOT, MEDIA_ROOT
 
@@ -166,3 +168,9 @@ def toggle_liked_video(request, video_pk):
 
     request.user.liked_videos.add(video)
     return JsonResponse({"liked_video": True, "likes": likes}, status=200)
+
+def registration_transfer(request):
+    return render(request, "studiopal/registration_transfer.html")
+
+class MyRegistrationView(RegistrationView):
+    success_url = reverse_lazy('add_studio_info')
