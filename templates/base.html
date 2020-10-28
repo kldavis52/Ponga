@@ -81,7 +81,7 @@
             {% else %}
             <a href="{% url 'user_detail' user_pk=user.pk %}">
               <div id="nav-item-username-container">
-              {% if user.bio or not user.studio_name %}
+              {% if user.bio or user.studio_name %}
                   <img
                     class="circle responsive-img"
                     src="{{ user.image_medium.url }}"
