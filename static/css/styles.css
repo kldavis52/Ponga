@@ -14,6 +14,15 @@
     /* opacity: .75; */
 }
 
+.icon {
+    margin-right: 5px;
+    color: #6767f6 !important;
+}
+
+form#nav-search > input {
+    margin: 0 !important;
+}
+
 .container {
     height: 100%;
 }
@@ -147,6 +156,12 @@ form#nav-search > input {
     border-radius: 3%;
     height: 23px;
     color: #ffffff;
+}
+
+.sidenav-link {
+    color: #6767f6 !important;
+    font-weight: 600;
+    font-family: 'Open sans', sans-serif
 }
 
 /* landing_page.html */

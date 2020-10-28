@@ -2,9 +2,10 @@
 
 <div class="container">
   <section>
-    <h5 style="margin-top: 75px; padding-left: 10px">Search Results</h5>
     <div class="row">
-      {% for video in videos %}
+    {% if video_results %}
+    <h5 style="margin-top: 75px; padding-left: 10px">Search Results</h5>
+    {% for video in videos %}
       <div class="col m4">
         <div class="card small">
           <div class="card-image" style="height: 100%">
@@ -27,11 +28,14 @@
               <p id="video-card-details">
                 {{ video.creator }} | {{ video.liked_by.count }} like(s)
               </p>
+            {% endfor %}
+            {% else %}
+            <h5> nothing </h5>
+            {% endif %}
             </div>
           </div>
         </div>
       </div>
-      {% endfor %}
     </div>
   </section>
 </div>
