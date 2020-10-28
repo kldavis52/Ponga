@@ -78,13 +78,6 @@
         </div>
       </div>
       {% endfor %}
-      {% if not video.comments.all %}
-      <div class="card empty-state">
-        <div class="card-content">
-          No comments yet. 
-        </div>
-      </div>
-      {% endif %}
     </div>
       {% if user.is_authenticated %}
       <div class="comment-form">
