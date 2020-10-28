@@ -20,11 +20,13 @@ from django.conf.urls.static import static
 from core import views
 from core.views import MyRegistrationView
 from django.views.generic import TemplateView
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("registration.backends.simple.urls")),
     path('accounts/register/', MyRegistrationView.as_view(), name='registration_register'),
+    path('accounts/', include('django.contrib.auth.urls')),
     path(
         "studiopal/add_comment/<int:video_pk>/", views.add_comment, name="add_comment"
     ),

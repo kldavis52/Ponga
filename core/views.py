@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.core.files import File
-from .forms import InstructorForm, VideoForm, CommentsForm, UserForm
+from .forms import InstructorForm, VideoForm, CommentsForm, UserForm, RegistrationForm
 from .models import Video, Comment
 from users.models import User
 from studiopal.settings import AZURE_STATIC_ROOT
@@ -173,4 +173,4 @@ def registration_transfer(request):
     return render(request, "studiopal/registration_transfer.html")
 
 class MyRegistrationView(RegistrationView):
-    success_url = reverse_lazy('user_create')
+    success_url = reverse_lazy('add_studio_info')
