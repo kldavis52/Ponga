@@ -45,7 +45,7 @@ nav {
 h2 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;
-    color: #6767f6;
+    color: #b167f6;
 }
 
 h5 {
@@ -245,6 +245,14 @@ video {
     min-height: 400px;
     /* width: 100%; */
 }
+
+video::-internal-media-controls-download-button { 
+    display:none; 
+} 
+ 
+video::-webkit-media-controls-enclosure { 
+    overflow:hidden; 
+} 
 
 .detail-container {
     display: flex; 
