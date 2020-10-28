@@ -94,7 +94,7 @@ def add_comment(request, video_pk):
         new_comment.save()
         html = (
             f'<div class="card" id="comment-content"><div class="card-content">'
-            f'<p>{new_comment.text}</p>'
+            f"<p>{new_comment.text}</p>"
             f'<p id="comment-pub-date">{new_comment.pub_date}</p>'
             f'<p id="video-author">by <span>{new_comment.author}</span></p></div></div>'
         )
@@ -169,8 +169,10 @@ def toggle_liked_video(request, video_pk):
     request.user.liked_videos.add(video)
     return JsonResponse({"liked_video": True, "likes": likes}, status=200)
 
+
 def registration_transfer(request):
     return render(request, "studiopal/registration_transfer.html")
 
+
 class MyRegistrationView(RegistrationView):
-    success_url = reverse_lazy('add_studio_info')
+    success_url = reverse_lazy("add_studio_info")
