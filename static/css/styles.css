@@ -11,7 +11,11 @@
     height: 100vh;
     width: 100vw;
     z-index: -1;
-    /* opacity: .75; */
+    opacity: .4;
+}
+
+.empty-state {
+    height: 200px;
 }
 
 .icon {
@@ -243,9 +247,8 @@ video {
 
 #comments-container {
     width: 100%;
-    /* padding: 15px; */
-    padding-top: 6px;
     padding-left: 20px;
+    margin-top: -75px;
 }
 
 #comment-pub-date {
@@ -340,6 +343,7 @@ video {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center !important;
 }
 
 div.row  > img{

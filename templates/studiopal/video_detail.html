@@ -1,6 +1,6 @@
 {%extends "base.html"%} {%load static%} {%block content%}
 
-<div class="container" style="display: flex; width: 100%">
+<div class="container" style="display: flex; width: 100%; align-items: center; overflow: hidden ">
   <div id="video-container">
     <video class="col s12" controls>
       <source src="{{ video.video.url }}" type="video/mp4" />
@@ -28,9 +28,9 @@
         class="no-underline pointer dib grow"
       >
         {% if liked_video %}
-        <i class="fas fa-heart" style="font-size:30px;color:red"></i>
+        <i class="fas fa-heart" style="font-size:30px;color:#6767f6"></i>
         {% else %}
-        <i class="far fa-heart" style="font-size:30px;color:red"></i>
+        <i class="far fa-heart" style="font-size:30px;color:#6767f6"></i>
         {% endif %}</a
       >
       {% endif %}
@@ -47,7 +47,6 @@
         {%endif%}
       </div>
     </div>
-    <a href="{% url 'studio_detail' user_pk=video.creator.pk %}">
     <div  class="card">
       <div class="card-content" id="video-desc-container">
         <img
@@ -68,6 +67,7 @@
   </div>
 
   <div id="comments-container">
+  <div  style="overflow: scroll; height:500px">
     {%for comment in video.comments.all %}
     <div class="card" id="comment-content">
       <div class="card-content">
@@ -77,6 +77,7 @@
       </div>
     </div>
     {% endfor %}
+  </div>
     {% if user.is_authenticated %}
     <div class="comment-form">
       {% csrf_token %}
@@ -138,9 +139,9 @@
       .then(data => {
         console.log(data)
         if (data.liked_video) {
-          toggleLikedLink.innerHTML = '<i class="fas fa-heart" style="font-size:30px;color:red"></i>'
+          toggleLikedLink.innerHTML = '<i class="fas fa-heart" style="font-size:30px;color:#6767f6"></i>'
         } else {
-          toggleLikedLink.innerHTML = '<i class="far fa-heart" style="font-size:30px;color:red"></i>'
+          toggleLikedLink.innerHTML = '<i class="far fa-heart" style="font-size:30px;color:#6767f6"></i>'
         }
       })
       .catch(err => {
@@ -149,4 +150,3 @@
   })
 </script>
 {%endblock%}
-

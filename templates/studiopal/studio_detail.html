@@ -56,9 +56,16 @@
         </div>
       </div>
       {% endfor %}
+      {% if not video %}
+      <div class="card empty-state">
+        <div class="card-content">
+          No uploaded sessions yet. 
+        </div>
+      </div>
+      {% endif %}
     </div>
     <section>
-    <div class="row">
+    <div class="row empty-state">
       <h5 style="margin-top: 75px; padding-left: 10px">{{ user.username }}'s Favorite Sessions</h5>
       {% for video in user.liked_videos.all %}
       <div class="col m4">
@@ -88,5 +95,12 @@
         </div>
       </div>
       {% endfor %}
+      {% if not video %} 
+      <div class="card empty-state">
+        <div class="card-content">
+          No favorited sessions yet. 
+        </div>
+      </div>
+      {% endif %}
     </div>
     {% endblock %}

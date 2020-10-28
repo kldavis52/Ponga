@@ -110,6 +110,27 @@
 </nav>
 
     <ul class="sidenav" id="mobile-nav">
+      <li id="search" style="margin: 0 60px 0 0;"> 
+        <div class="nav-item-with-icon-container">
+          <span class="icon"><i class="fas fa-sm fa-search"></i></span>
+          <form id="sidenav-search" action="{% url 'search_results' %}" method="GET">
+            {% csrf_token %}
+              <input
+                class="input-field sidenav-search"
+                id="sidenav-search-input"
+                type="search"
+                name="search"
+                placeholder="search"
+                value="{{query}}"
+                required
+                style="margin: 0 !important;
+                height: 20px;
+                border-bottom: 1.5px solid #6767f6;
+                color: #6767f6;"
+              />
+          </form>
+        </div>
+      </li>
       {% if not user.is_authenticated %}
       <li>
         <a class="sidenav-link" href="{% url 'auth_login' %}">
@@ -142,27 +163,6 @@
         </li>
       </a>
       {% endif %}
-      <li id="search" style="margin: 0 60px 0 0;"> 
-        <div class="nav-item-with-icon-container">
-          <span class="icon"><i class="fas fa-sm fa-search"></i></span>
-          <form id="nav-search" action="{% url 'search_results' %}" method="GET">
-            {% csrf_token %}
-              <input
-                class="input-field sidenav-search"
-                id="search"
-                type="search"
-                name="search"
-                placeholder="search"
-                value="{{query}}"
-                required
-                style="margin: 0 !important;
-                height: 20px;
-                border-bottom: 1.5px solid #6767f6;
-                color: #6767f6;"
-              />
-          </form>
-        </div>
-      </li>
       {% if user.studio_name and user.pk is request.user.pk %}
       <li>
         <a class="sidenav-link" href="{% url 'video_upload' %}">
