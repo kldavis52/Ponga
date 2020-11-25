@@ -19,7 +19,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&family=Playfair+Display:wght@900&display=swap"
     />
-    <title>{% block title %}StudioPal{% endblock %}</title>
+    <title>{% block title %}Ponga{% endblock %}</title>
   </head>
   <body>
     <div id="background-img"></div>
@@ -57,14 +57,10 @@
           </li>
           {% if not user.is_authenticated %}
           <li class="row">
-            <a href="{% url 'auth_login' %}">
-              Login
-            </a>
+            <a href="{% url 'auth_login' %}"> Login </a>
           </li>
           <li>
-            <a href="{% url 'registration_register' %}">
-              Sign up
-            </a>
+            <a href="{% url 'registration_register' %}"> Sign up </a>
           </li>
           {% else %} {% if user.pk is request.user.pk %}
           <li>
@@ -131,7 +127,7 @@
     </nav>
 
     <ul class="sidenav" id="mobile-nav">
-      <li id="search" style="margin: 0 60px 0 0;">
+      <li id="search" style="margin: 0 60px 0 0">
         <div class="nav-item-with-icon-container">
           <span class="icon"><i class="fas fa-sm fa-search"></i></span>
           <form
@@ -148,19 +144,19 @@
               placeholder="search"
               value="{{query}}"
               required
-              style="margin: 0 !important;
-                  height: 20px;
-                  border-bottom: 1.5px solid #6767f6;
-                  color: #6767f6;"
+              style="
+                margin: 0 !important;
+                height: 20px;
+                border-bottom: 1.5px solid #6767f6;
+                color: #6767f6;
+              "
             />
           </form>
         </div>
       </li>
       {% if not user.is_authenticated %}
-      <li style="margin-top: 15px;">
-        <a class="sidenav-link" href="{% url 'auth_login' %}">
-          Login
-        </a>
+      <li style="margin-top: 15px">
+        <a class="sidenav-link" href="{% url 'auth_login' %}"> Login </a>
       </li>
       <li>
         <a class="sidenav-link" href="{% url 'registration_register' %}">
@@ -168,7 +164,7 @@
         </a>
       </li>
       {% else %} {% if user.pk is request.user.pk %}
-      <li style="margin-top: 15px;">
+      <li style="margin-top: 15px">
         {% if user.studio_name%}
         <a
           class="sidenav-link"
@@ -179,7 +175,7 @@
             <img
               class="circle responsive-img"
               src="{{ user.image_medium.url }}"
-              style="margin-left: 0px !important;"
+              style="margin-left: 0px !important"
             />
             {% else %}
             <img
@@ -246,8 +242,8 @@
     <script src="{% static 'js/materialize.min.js'%}"></script>
     <script>
       $(document).ready(function () {
-        $('.sidenav').sidenav()
-      })
+        $('.sidenav').sidenav();
+      });
     </script>
     {% block scripts %} {% endblock %}
   </body>
