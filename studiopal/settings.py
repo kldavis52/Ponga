@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     "users",
     "imagekit",
     "taggit",
+    "rest_framework",
+    "api",
 ]
 
 MIDDLEWARE = [
