@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 pylint = "*"
 prospector = "*"
+black = "*"
 
 [packages]
 django = "*"
@@ -29,6 +30,10 @@ ipython = "*"
 django-materializecss-form = "*"
 moviepy = "*"
 prospector = "*"
+djangorestframework = "*"
 
 [requires]
 python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true
