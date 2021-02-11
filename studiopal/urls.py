@@ -22,11 +22,19 @@ from core.views import MyRegistrationView
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 
+from rest_framework.routers import DefaultRouter
+from api import views as api_views
+
+api_router = DefaultRouter()
+api_router.register("videos", viewset=api_views.VideoListView, basename="video")
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("registration.backends.simple.urls")),
-    path('accounts/register/', MyRegistrationView.as_view(), name='registration_register'),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path(
+        "accounts/register/", MyRegistrationView.as_view(), name="registration_register"
+    ),
+    path("accounts/", include("django.contrib.auth.urls")),
     path(
         "studiopal/add_comment/<int:video_pk>/", views.add_comment, name="add_comment"
     ),
@@ -60,7 +68,13 @@ urlpatterns = [
         views.add_user_info,
         name="add_user_info",
     ),
-    path('accounts/register/transfer', views.registration_transfer, name='registration_transfer'),
+    path(
+        "accounts/register/transfer",
+        views.registration_transfer,
+        name="registration_transfer",
+    ),
+    path("api-auth/", include("rest_framework.urls")),
+    path("api-V1/", include("api.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
