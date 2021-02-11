@@ -7,31 +7,31 @@ from users.models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = (
+        fields = [
             "studio_name",
             "profile_photo",
             "user_bio",
             "paypal_donation_url",
             "joined_date",
-        )
+        ]
 
 
 class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Video
-        fields = (
+        fields = [
             "title",
             "description",
             "video",
             "video_thumbnail",
             "publish_date",
-        )
+        ]
 
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = (
+        fields = [
             "text",
             "pub_date",
-        )
+        ]
