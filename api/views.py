@@ -1,5 +1,5 @@
 from django.http.response import Http404
-from rest_framework import views, viewsets, generics, status
+from rest_framework import views, viewsets, generics, status, mixins
 from rest_framework.parsers import MultiPartParser, FormParser
 
 from rest_framework.response import Response
@@ -15,31 +15,32 @@ class VideoListView(generics.ListAPIView):
     serializer_class = VideoSerializer
 
 
-class VideoDetailView(views.APIView):
+class VideoDetailView(
+    mixins.RetrieveModelMixin,
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    generics.GenericAPIView,
+):
     """
-    Retrieve, update or delete a video
+    GET, POST, PATCH, PUT, DELETE a single video.
     """
 
-    def get_object(self, pk):
-        try:
-            return Video.objects.get(pk=pk)
-        except Video.DoesNotExist:
-            raise Http404
+    queryset = Video.objects.all()
+    serializer_class = VideoSerializer
 
-    def get(self, request, pk, format=None):
-        video = self.get_object(pk)
-        serializer = VideoSerializer(video)
-        return Response(serializer.data)
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
 
-    def put(self, request, pk, format=None):
-        video = self.get_object(pk=pk)
-        serializer = VideoSerializer(video, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
 
-    def delete(self, request, pk, format=None):
-        video = self.get_object(pk=pk)
-        video.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    def patch(self, request, *args, **kwargs):
+        kwargs["partial"] = True
+        return self.update(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
