@@ -17,11 +17,14 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class VideoSerializer(serializers.ModelSerializer):
+    video_thumbnail = serializers.ImageField(required=False)
+
     class Meta:
         model = Video
         fields = [
             "title",
             "description",
+            "creator",
             "video",
             "video_thumbnail",
             "publish_date",
