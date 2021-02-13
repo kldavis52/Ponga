@@ -73,7 +73,7 @@ urlpatterns = [
         views.registration_transfer,
         name="registration_transfer",
     ),
-    path("api-auth/", include("rest_framework.urls")),
+    path("dj-rest-auth/", include("dj_rest_auth.urls")),
     path("api-V1/", include("api.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
