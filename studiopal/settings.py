@@ -61,7 +61,9 @@ INSTALLED_APPS = [
     "imagekit",
     "taggit",
     "rest_framework",
+    "rest_framework.authtoken",
     "api",
+    "dj_rest_auth",
 ]
 
 MIDDLEWARE = [
