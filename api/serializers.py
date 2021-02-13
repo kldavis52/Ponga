@@ -18,6 +18,9 @@ class UserSerializer(serializers.ModelSerializer):
 
 class VideoSerializer(serializers.ModelSerializer):
     video_thumbnail = serializers.ImageField(required=False)
+    # creator = serializers.PrimaryKeyRelatedField(
+    #     read_only=True, default=serializers.CurrentUserDefault()
+    # )
 
     class Meta:
         model = Video
