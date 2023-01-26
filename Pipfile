@@ -30,11 +30,11 @@ django-materializecss-form = "*"
 moviepy = "*"
 prospector = "*"
 djangorestframework = "*"
-psycopg2-binary = "*"
 django-allauth = "*"
 django-rest-auth = "*"
 dj-rest-auth = "*"
 dj-database-url = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.8"
