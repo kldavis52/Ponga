@@ -51,6 +51,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "rest_framework",
+    "rest_framework.authtoken",
+    "api",
     # Third-party
     "debug_toolbar",
     "django_extensions",
@@ -60,11 +67,9 @@ INSTALLED_APPS = [
     "users",
     "imagekit",
     "taggit",
-    "rest_framework",
-    "rest_framework.authtoken",
-    "api",
-    "dj_rest_auth",
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
@@ -172,3 +177,5 @@ TAGGIT_CASE_INSENSITIVE = True
 
 STATIC_LOCATION = "static"
 MEDIA_LOCATION = "media"
+
+LOGOUT_ON_PASSWORD_CHANGE = False
